@@ -1,0 +1,14 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.SalesDesign" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Customize your light theme here. -->
+
+        <item name="android:textColorPrimary">#012842</item>
+        <item name="bottomNavigationStyle">@style/Widget.MaterialComponents.BottomNavigationView.Colored</item>
+        <item name="colorPrimary">#b0dcf7</item>
+        <item name="colorOnPrimary">#FFFFFF</item>
+
+    </style>
+
+    <style name="Theme.SalesDesign" parent="Base.Theme.SalesDesign" />
+</resources>
