@@ -56,9 +56,8 @@
 
     </RelativeLayout>
 
-
-
     <RelativeLayout
+        android:id="@+id/transportationLY"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/toolBarLy">
@@ -78,52 +77,109 @@
 
 
         <LinearLayout
-            android:id="@+id/transportationType"
+            android:id="@+id/imageLy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+           android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:layout_below="@id/chooseTransportationTxt">
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/bus"
+                android:layout_marginEnd="30dp"
+                android:contentDescription="Bus Icon"/>
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/motorbike"
+                android:layout_marginEnd="30dp"
+                android:contentDescription="Bus Icon"/>
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/train"
+                android:layout_marginEnd="30dp"
+                android:contentDescription="Bus Icon"/>
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/flight"
+                android:contentDescription="Bus Icon"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/radoibtnID"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="15dp"
-            android:layout_below="@id/chooseTransportationTxt">
+            android:layout_below="@id/imageLy">
 
+            <RadioGroup
+                android:id="@+id/idRadioGroup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:orientation="horizontal">
 
-            <ImageView
-                android:layout_width="80dp"
-                android:layout_height="80dp"
-                android:src="@drawable/bike"/>
+                <RadioButton
+                    android:id="@+id/idBtnBusRadio"
+                    android:layout_width="70dp"
+                    android:layout_height="wrap_content"
+                    android:text="Bus"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:textSize="12sp" />
 
+                <RadioButton
+                    android:id="@+id/idBtnBikeRadio"
+                    android:layout_width="70dp"
+                    android:layout_height="wrap_content"
+                    android:text="Bike"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:textSize="12sp" />
 
-            <ImageView
-                android:layout_width="80dp"
-                android:layout_height="80dp"
-                android:src="@drawable/car"/>
+                <RadioButton
+                    android:id="@+id/idBtnTrainRadio"
+                    android:layout_width="70dp"
+                    android:layout_height="wrap_content"
+                    android:text="Train"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:textSize="12sp" />
 
-
-            <ImageView
-                android:layout_width="80dp"
-                android:layout_height="80dp"
-                android:src="@drawable/airplane"/>
-
-
-            <ImageView
-                android:layout_width="80dp"
-                android:layout_height="80dp"
-                android:src="@drawable/train1"/>
-
+                <RadioButton
+                    android:id="@+id/idBtnFlightRadio"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:text="Flight"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:textSize="12sp" />
+            </RadioGroup>
 
         </LinearLayout>
 
 
+        <ScrollView
+            android:id="@+id/inputLy"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:layout_below="@id/radoibtnID">
+
     <LinearLayout
-        android:id="@+id/inputLy"
         android:layout_width="350dp"
-        android:layout_height="200dp"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@id/transportationType"
-        android:background="@drawable/card1"
+        android:layout_height="wrap_content"
+       android:layout_gravity="center_horizontal"
+        android:background="@drawable/inputbg"
         android:layout_marginTop="20dp"
         android:orientation="vertical">
 
         <EditText
+            android:id="@+id/foodExpensesId"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Food expense"
@@ -132,6 +188,7 @@
             android:layout_marginEnd="15dp"/>
 
         <EditText
+            android:id="@+id/waterExpenseId"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Water expense"
@@ -139,6 +196,7 @@
             android:layout_marginStart="15dp"
             android:layout_marginEnd="15dp"/>
         <EditText
+            android:id="@+id/ticketId"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Ticket expense"
@@ -146,33 +204,81 @@
             android:layout_marginStart="15dp"
             android:layout_marginEnd="15dp"/>
 
+        <EditText
+            android:id="@+id/hotelExpenseId"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Hotel expense"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"/>
+
+
+        <EditText
+            android:id="@+id/otherExpensesId"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Other Expenses"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"/>
+
+        <EditText
+            android:id="@+id/fuelId"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Fuel if you ride with two or four wheeler"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"/>
+
+
 
     </LinearLayout>
 
+        </ScrollView>
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="250dp"
             android:layout_height="80dp"
             android:layout_below="@id/inputLy"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="15dp"
-            android:background="@drawable/card1">
+            android:gravity="center_horizontal"
+            android:background="@drawable/inputbg">
 
+            <ImageView
+                android:id="@+id/imagePicker"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:src="@drawable/baseline_photo_camera_24"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Upload Receipts/Bills"
-                android:textColor="@color/white"
-                android:textSize="20sp"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:layout_marginStart="10dp"
                 android:layout_gravity="center"/>
 
 
         </LinearLayout>
 
 
-
     </RelativeLayout>
+
+
+    <Button
+        android:id="@+id/saveToDatabase"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Save"
+        android:layout_below="@id/transportationLY"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"/>
+
 
 
 </RelativeLayout>

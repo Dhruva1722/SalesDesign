@@ -9,9 +9,6 @@ import com.example.salesdesign.Fragment.AttendanceFragment
 import com.example.salesdesign.Fragment.CanteenFragment
 import com.example.salesdesign.Fragment.DashboardFragment
 import com.example.salesdesign.Fragment.EventFragment
-import com.google.android.gms.maps.GoogleMap
-import com.google.android.gms.maps.OnMapReadyCallback
-import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 

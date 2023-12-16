@@ -67,19 +67,6 @@
         android:layout_marginEnd="10dp"
         android:background="@drawable/searchbg">
 
-<!--        <ImageView-->
-<!--            android:layout_width="30dp"-->
-<!--            android:layout_height="30dp"-->
-<!--            android:layout_gravity="center"-->
-<!--            android:layout_marginStart="10dp"-->
-<!--            android:src="@drawable/baseline_search_24" />-->
-
-<!--        <EditText-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:hint="search here"-->
-<!--            android:layout_marginEnd="10dp"/>-->
-
         <SearchView
             android:id="@+id/idSV"
             android:layout_width="match_parent"
@@ -90,7 +77,6 @@
             android:queryHint="Search Customer" />
 
     </LinearLayout>
-
 
     <LinearLayout
         android:layout_width="match_parent"

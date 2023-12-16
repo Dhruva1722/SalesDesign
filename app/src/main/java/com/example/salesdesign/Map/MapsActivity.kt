@@ -29,6 +29,7 @@ import com.google.android.gms.maps.MapsInitializer
 import com.google.android.gms.maps.model.BitmapDescriptor
 import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLngBounds
+import com.google.android.gms.maps.model.Polyline
 import com.google.android.gms.maps.model.PolylineOptions
 import okhttp3.Callback
 import okhttp3.Call
@@ -53,6 +54,8 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     private lateinit var submitBtn: Button
 
     private  var  LOCATION_PERMISSION_REQUEST_CODE = 123
+
+    private var userPolylines: MutableList<Polyline> = mutableListOf()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -106,14 +109,39 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         locationHelper.startLocationUpdates()
     }
 
+//    private fun onLocationChanged(location: Location) {
+//        // Zoom to the user's current location
+//        val latLng = LatLng(location.latitude, location.longitude)
+//        map.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 16f))
+//
+//        // Add a marker to the user's current location
+//        map.clear() // Clear existing markers
+//        map.addMarker(MarkerOptions().position(latLng).title("Your Location"))
+//    }
+
+
     private fun onLocationChanged(location: Location) {
         // Zoom to the user's current location
         val latLng = LatLng(location.latitude, location.longitude)
         map.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 16f))
 
-        // Add a marker to the user's current location
-        map.clear() // Clear existing markers
-        map.addMarker(MarkerOptions().position(latLng).title("Your Location"))
+        // Draw/update the polyline from the starting point to the current location
+        val startPointLatLng = getLatLngFromAddress(originEdt.text.toString())
+        if (startPointLatLng != null) {
+            val startPoint = startPointLatLng
+
+            val polylineOptions = PolylineOptions()
+                .add(LatLng(startPoint.first,startPoint.second))
+                .add(latLng)  // Use the updated latLng directly here
+                .color(Color.RED)
+                .width(7f)
+
+            // Add the new polyline to the map
+            map.addPolyline(polylineOptions)
+
+            // Add the new polyline to the list for continuous tracking
+            userPolylines.add(map.addPolyline(polylineOptions))
+        }
     }
 
     private fun enableMyLocation() {
@@ -251,6 +279,20 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         return  return Triple(points, distance, duration)
     }
 
+//    fun getLatLngFromAddress(address: String): Pair<Double, Double>? {
+//        try {
+//            val addresses: List<Address> = geocoder.getFromLocationName(address, 1)!!
+//            if (addresses.isNotEmpty()) {
+//                val latitude = addresses[0].latitude
+//                val longitude = addresses[0].longitude
+//                return Pair(latitude, longitude)
+//            }
+//        } catch (e: IOException) {
+//            e.printStackTrace()
+//        }
+//        return null
+//    }
+
     fun getLatLngFromAddress(address: String): Pair<Double, Double>? {
         try {
             val addresses: List<Address> = geocoder.getFromLocationName(address, 1)!!
@@ -264,7 +306,6 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         }
         return null
     }
-
     private fun drawPolyline(points: List<LatLng>?) {
         if (points != null && points.isNotEmpty()) {
             val polylineOptions = PolylineOptions()

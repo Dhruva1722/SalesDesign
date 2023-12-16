@@ -48,6 +48,17 @@ dependencies {
     implementation ("com.loopj.android:android-async-http:1.4.10")
     implementation ("com.squareup.okhttp3:okhttp:4.9.1")
 
+//    //retrofit
+//    implementation ("com.squareup.retrofit2:retrofit:2.9.0")
+//    implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
+
+    implementation ("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
+
+// expandable tag
+    implementation ("com.ms-square:expandableTextView:0.1.4")
+
+
     implementation ("de.hdodenhof:circleimageview:3.1.0")
     implementation ("com.google.android.gms:play-services-maps:17.0.1")
     implementation ("com.google.android.gms:play-services-location:18.0.0")

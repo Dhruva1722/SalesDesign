@@ -10,17 +10,18 @@ import android.widget.RelativeLayout
 import com.example.salesdesign.Activity.CustomerActivity
 import com.example.salesdesign.Activity.ExpenseActivity
 import com.example.salesdesign.Activity.KMSActivity
+import com.example.salesdesign.Activity.ReadyStockActivity
 import com.example.salesdesign.Activity.VisitsActivity
 import com.example.salesdesign.Map.MapsActivity
 import com.example.salesdesign.R
 
 
 class DashboardFragment : Fragment() {
- private lateinit var expenseActivity: RelativeLayout
- private lateinit var kmsActivity: RelativeLayout
- private lateinit var visitsActivity: RelativeLayout
-    private lateinit var mapsActivity: RelativeLayout
-
+     private lateinit var expenseActivity: RelativeLayout
+     private lateinit var kmsActivity: RelativeLayout
+     private lateinit var visitsActivity: RelativeLayout
+     private lateinit var mapsActivity: RelativeLayout
+    private lateinit var stockActivity: RelativeLayout
     private lateinit var customerActivity: RelativeLayout
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,7 +35,7 @@ class DashboardFragment : Fragment() {
         visitsActivity = view.findViewById(R.id.visitingLY)
         customerActivity = view.findViewById(R.id.customerLY)
         mapsActivity = view.findViewById(R.id.mapLy)
-
+        stockActivity = view.findViewById(R.id.readStockLY)
 
         expenseActivity.setOnClickListener {
             val intent = Intent(requireContext(),ExpenseActivity::class.java)
@@ -60,6 +61,10 @@ class DashboardFragment : Fragment() {
             startActivity(intent)
         }
 
+        stockActivity.setOnClickListener {
+            val intent = Intent(requireContext(),ReadyStockActivity::class.java)
+            startActivity(intent)
+        }
         return view
     }
 

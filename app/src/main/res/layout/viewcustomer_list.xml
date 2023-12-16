@@ -15,28 +15,29 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/customerID"
+            android:id="@+id/viewName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="5dp"
-            android:text="Customer ID"
-            android:textColor="@color/white"
-            android:textSize="20sp" />
-
-        <TextView
-            android:id="@+id/customerName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:layout_marginLeft="15dp"
             android:layout_marginBottom="5dp"
             android:text="Nick Jhons"
             android:textColor="@color/white"
+            android:textSize="17sp"/>
+
+
+        <TextView
+            android:id="@+id/viewPhone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginBottom="5dp"
+            android:text="232435454"
+            android:textColor="@color/white"
             android:textSize="17sp" />
 
         <TextView
-            android:id="@+id/customerLocation"
+            android:id="@+id/viewLocation"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="15dp"
@@ -46,7 +47,18 @@
             android:textSize="15sp" />
 
         <TextView
-            android:id="@+id/customerImformation"
+            android:id="@+id/viewIndustryType"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginBottom="5dp"
+            android:text="Multispan Control Instrument "
+            android:textColor="@color/white"
+            android:textSize="15sp" />
+
+
+        <TextView
+            android:id="@+id/viewInformation"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="15dp"

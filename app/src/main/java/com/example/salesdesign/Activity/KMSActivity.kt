@@ -8,7 +8,6 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.salesdesign.Adapter.ListAdapter
 import com.example.salesdesign.MainActivity
 import com.example.salesdesign.R
 
@@ -17,7 +16,7 @@ class KMSActivity : AppCompatActivity() {
     private lateinit var backbtn : ImageView
 
     private lateinit var showCardDetails: RecyclerView
-    private lateinit var listAdapter: ListAdapter
+//    private lateinit var listAdapter: ListAdapter
 
     private lateinit var todayKm : LinearLayout
     private lateinit var weekKm : LinearLayout
@@ -41,11 +40,11 @@ class KMSActivity : AppCompatActivity() {
             startActivity(intent)
         }
             showCardDetails = findViewById(R.id.showCardDetails)
-            listAdapter = ListAdapter()
+//            listAdapter = ListAdapter()
 
             // Set up RecyclerView with a LinearLayoutManager
             showCardDetails.layoutManager = LinearLayoutManager(this)
-            showCardDetails.adapter = listAdapter
+//            showCardDetails.adapter = listAdapter
 
             // Set up click listeners for different cards
             todayKm.setOnClickListener {
@@ -67,7 +66,7 @@ class KMSActivity : AppCompatActivity() {
 
         private fun onCardClick(listItems: List<ListItem>) {
             // Update the adapter with the clicked list items
-            listAdapter.submitList(listItems)
+//            listAdapter.submitList(listItems)
 
             // Make the showCardLY layout visible
             val showCardLY: LinearLayout = findViewById(R.id.showCardLY)

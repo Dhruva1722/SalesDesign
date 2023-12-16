@@ -7,97 +7,97 @@
     tools:context=".MainActivity"
     android:background="#E1EDF9">
 
-<RelativeLayout
-    android:id="@+id/firstRL"
-    android:layout_width="match_parent"
-    android:layout_height="60dp"
-    android:background="@drawable/blueheader"
-    android:layout_marginEnd="5dp"
-    android:layout_marginStart="5dp"
-    android:layout_marginTop="5dp">
-
-
-<ImageView
-    android:id="@+id/multispan_logo"
-    android:layout_width="40dp"
-    android:layout_height="40dp"
-    android:src="@drawable/multispan_logo"
-    app:tint="@color/white"
-    android:layout_marginTop="10dp"
-    android:layout_marginStart="10dp"/>
-
-
-<TextView
-    android:id="@+id/multispanTxt"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="ultispan"
-    android:textColor="@color/white"
-    android:textStyle="bold"
-    android:layout_toRightOf="@id/multispan_logo"
-    android:layout_marginTop="20dp"/>
-
-
-    <ImageView
-        android:id="@+id/notificationBtn"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:src="@drawable/baseline_notifications_24"
-       android:layout_toLeftOf="@id/helpBtn"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="10dp"/>
-    <ImageView
-        android:id="@+id/helpBtn"
-        android:layout_width="25dp"
-        android:layout_height="25dp"
-        android:src="@drawable/baseline_help_24"
-        android:layout_alignParentRight="true"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="10dp"/>
-
-
-<!--    <TextView-->
-<!--        android:id="@+id/companyTxt"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:text="Welcome to our company"-->
-<!--        android:textColor="@color/white"-->
-<!--        android:layout_below="@id/multispanTxt"-->
-<!--        android:layout_marginStart="10dp"-->
-<!--        android:layout_marginTop="30dp"/>-->
-
-<!--    <TextView-->
-<!--        android:id="@+id/company1Txt"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:text="MULTISPAN CONTROL INSTRUMENT PVT LTD"-->
-<!--        android:textColor="@color/white"-->
-<!--        android:textStyle="bold"-->
-<!--        android:layout_below="@id/companyTxt"-->
-<!--        android:layout_marginStart="10dp"-->
-<!--        android:layout_marginTop="10dp"/>-->
-
-</RelativeLayout>
-
-
-<RelativeLayout
-    android:id="@+id/relativelayout"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_below="@id/firstRL"
-    android:layout_above="@+id/bottomNavigationView"/>
-
-
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottomNavigationView"
+    <RelativeLayout
+        android:id="@+id/firstRL"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="5dp"
         android:background="@drawable/blueheader"
-        app:menu="@menu/bottom_menu"
+        android:layout_marginEnd="5dp"
         android:layout_marginStart="5dp"
-        android:layout_marginEnd="5dp"/>
+        android:layout_marginTop="5dp">
+
+
+    <ImageView
+        android:id="@+id/multispan_logo"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/multispan_logo"
+        app:tint="@color/white"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="10dp"/>
+
+
+    <TextView
+        android:id="@+id/multispanTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ultispan"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:layout_toRightOf="@id/multispan_logo"
+        android:layout_marginTop="20dp"/>
+
+
+        <ImageView
+            android:id="@+id/notificationBtn"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/baseline_notifications_24"
+           android:layout_toLeftOf="@id/helpBtn"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"/>
+        <ImageView
+            android:id="@+id/helpBtn"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:src="@drawable/baseline_help_24"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="10dp"/>
+
+
+    <!--    <TextView-->
+    <!--        android:id="@+id/companyTxt"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:text="Welcome to our company"-->
+    <!--        android:textColor="@color/white"-->
+    <!--        android:layout_below="@id/multispanTxt"-->
+    <!--        android:layout_marginStart="10dp"-->
+    <!--        android:layout_marginTop="30dp"/>-->
+
+    <!--    <TextView-->
+    <!--        android:id="@+id/company1Txt"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:text="MULTISPAN CONTROL INSTRUMENT PVT LTD"-->
+    <!--        android:textColor="@color/white"-->
+    <!--        android:textStyle="bold"-->
+    <!--        android:layout_below="@id/companyTxt"-->
+    <!--        android:layout_marginStart="10dp"-->
+    <!--        android:layout_marginTop="10dp"/>-->
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/relativelayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/firstRL"
+        android:layout_above="@+id/bottomNavigationView"/>
+
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottomNavigationView"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/blueheader"
+            app:menu="@menu/bottom_menu"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"/>
 
 
 </RelativeLayout>

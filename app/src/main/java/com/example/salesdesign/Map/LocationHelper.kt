@@ -18,6 +18,10 @@ class LocationHelper (private val context: Context, private val onLocationChange
         LocationServices.getFusedLocationProviderClient(context)
     private lateinit var locationCallback: LocationCallback
 
+
+
+
+
     init {
         createLocationCallback()
     }

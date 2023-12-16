@@ -206,6 +206,7 @@
             android:layout_toRightOf="@id/monthKmLy"
             android:layout_below="@id/weekKmLy">
 
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
