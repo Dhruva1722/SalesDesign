@@ -44,6 +44,7 @@
             android:layout_toLeftOf="@id/helpBtn"
             android:layout_centerVertical="true"
             android:layout_marginEnd="10dp"/>
+
         <ImageView
             android:id="@+id/helpBtn"
             android:layout_width="25dp"
@@ -61,8 +62,23 @@
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:layout_below="@id/toolBarLy"
-       android:layout_margin="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
         android:background="@drawable/listbg">
+
+        <TextView
+            android:id="@+id/targetTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Target"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="10dp"
+            android:textColor="#1760D3"/>
+
 
 
     </RelativeLayout>
@@ -80,6 +96,68 @@
         android:background="@drawable/listbg">
 
 
+        <TextView
+            android:id="@+id/stockTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Remaining Stocks"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="10dp"
+            android:textColor="#1760D3"/>
+
+        <TextView
+            android:id="@+id/instrumentTypeTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Type :"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:layout_below="@id/stockTxt"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="10dp"
+            android:textColor="#1760D3"/>
+
+        <TextView
+            android:id="@+id/instrumentTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="MFM-14"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:layout_below="@id/stockTxt"
+            android:layout_toRightOf="@id/instrumentTypeTxt"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="10dp"
+            android:textColor="#1760D3"/>
+
+        <TextView
+            android:id="@+id/stockTypeTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Stock :"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:layout_below="@id/instrumentTypeTxt"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="10dp"
+            android:textColor="#1760D3"/>
+
+        <TextView
+            android:id="@+id/numberOfStock"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="23"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:layout_below="@id/instrumentTypeTxt"
+            android:layout_toRightOf="@id/stockTypeTxt"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="10dp"
+            android:textColor="#1760D3"/>
+
+
     </RelativeLayout>
 
 
@@ -93,6 +171,16 @@
         android:background="@drawable/listbg">
 
 
+        <TextView
+            android:id="@+id/reasonTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Reason for Remaining Stocks"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="10dp"
+            android:textColor="#1760D3"/>
 
     </RelativeLayout>
 

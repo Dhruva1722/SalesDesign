@@ -177,13 +177,13 @@ class ExpenseActivity : AppCompatActivity() {
 }
 
 
-data class ExpenseData(
-    val Transport_type: String,
-    val Fuel_in_liters: Int,
-    val Food: String,
-    val Water: String,
-    val Hotel: String,
-    val Other_Transport: String,
-    val images: List<String>,
-    val ImageName: String
-)
+//data class ExpenseData(
+//    val Transport_type: String,
+//    val Fuel_in_liters: Int,
+//    val Food: String,
+//    val Water: String,
+//    val Hotel: String,
+//    val Other_Transport: String,
+//    val images: List<String>,
+//    val ImageName: String
+//)

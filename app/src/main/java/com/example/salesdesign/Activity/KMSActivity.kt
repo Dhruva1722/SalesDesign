@@ -4,10 +4,15 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.LinearLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.salesdesign.Fragment.MonthKmFragment
+import com.example.salesdesign.Fragment.TodayKmFragment
+import com.example.salesdesign.Fragment.WeekKmFragment
+import com.example.salesdesign.Fragment.YearKmFragment
 import com.example.salesdesign.MainActivity
 import com.example.salesdesign.R
 
@@ -15,8 +20,8 @@ class KMSActivity : AppCompatActivity() {
 
     private lateinit var backbtn : ImageView
 
-    private lateinit var showCardDetails: RecyclerView
-//    private lateinit var listAdapter: ListAdapter
+    private lateinit var showCardDetails: FrameLayout
+
 
     private lateinit var todayKm : LinearLayout
     private lateinit var weekKm : LinearLayout
@@ -40,73 +45,49 @@ class KMSActivity : AppCompatActivity() {
             startActivity(intent)
         }
             showCardDetails = findViewById(R.id.showCardDetails)
-//            listAdapter = ListAdapter()
 
-            // Set up RecyclerView with a LinearLayoutManager
-            showCardDetails.layoutManager = LinearLayoutManager(this)
-//            showCardDetails.adapter = listAdapter
 
-            // Set up click listeners for different cards
+//            showCardDetails.layoutManager = LinearLayoutManager(this)
+
+
+        val fragmentManager = supportFragmentManager
+
+        // Set up click listeners for different cards
             todayKm.setOnClickListener {
-                onCardClick(getTodayList())
+                val todayFragment = TodayKmFragment()
+                fragmentManager.beginTransaction()
+                    .replace(R.id.showCardDetails, todayFragment)
+                    .addToBackStack(null)
+                    .commit()
             }
 
             weekKm.setOnClickListener {
-                onCardClick(getWeeklyList())
+                val weekFragment = WeekKmFragment()
+                fragmentManager.beginTransaction()
+                    .replace(R.id.showCardDetails, weekFragment)
+                    .addToBackStack(null)
+                    .commit()
             }
 
             monthKm.setOnClickListener {
-                onCardClick(getMonthlyList())
+                val monthFragment = MonthKmFragment()
+                fragmentManager.beginTransaction()
+                    .replace(R.id.showCardDetails, monthFragment)
+                    .addToBackStack(null)
+                    .commit()
             }
 
             yearKm.setOnClickListener {
-                onCardClick(getYearlyList())
+                val yearFragment = YearKmFragment()
+                fragmentManager.beginTransaction()
+                    .replace(R.id.showCardDetails, yearFragment)
+                    .addToBackStack(null)
+                    .commit()
             }
         }
 
-        private fun onCardClick(listItems: List<ListItem>) {
-            // Update the adapter with the clicked list items
-//            listAdapter.submitList(listItems)
 
-            // Make the showCardLY layout visible
-            val showCardLY: LinearLayout = findViewById(R.id.showCardLY)
-            showCardLY.visibility = View.VISIBLE
-        }
-
-        private fun getTodayList(): List<ListItem> {
-            // Logic to retrieve today's list items
-            return listOf(
-                ListItem("Item 1", "Value 1"),
-                ListItem("Itemfgdfgfd", "Value 2"),
-                // Add more items as needed
-            )
-        }
-
-        private fun getWeeklyList(): List<ListItem> {
-            return listOf(
-                ListItem("Item --------------", "Value 1"),
-                ListItem("Item 2", "Value 2"),
-                // Add more items as needed
-            )
-        }
-
-        private fun getMonthlyList(): List<ListItem> {
-            return listOf(
-                ListItem("Item 1================", "Value 1"),
-                ListItem("Item 2", "Value 2"),
-                // Add more items as needed
-            )
-        }
-
-        private fun getYearlyList(): List<ListItem> {
-            return listOf(
-                ListItem("Item 14444444444444444", "Value 1"),
-                ListItem("Item 2", "Value 2"),
-                // Add more items as needed
-            )
-        }
 }
 
 
 
-data class ListItem(val itemName: String, val itemValue: String)

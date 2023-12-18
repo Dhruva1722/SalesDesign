@@ -5,6 +5,9 @@ import com.example.salesdesign.Activity.StockResponse
 import com.example.salesdesign.Fragment.AttendanceData
 import com.example.salesdesign.Fragment.Customer
 import com.example.salesdesign.Fragment.Event
+import com.example.salesdesign.Fragment.LocationInfo
+import com.example.salesdesign.Fragment.LocationResponse
+//import com.example.salesdesign.Fragment.LocationResponse
 import com.example.salesdesign.Fragment.MenuData
 import com.example.salesdesign.Fragment.PurchaseTodayFood
 import com.example.salesdesign.Fragment.PurchaseTomorrowFood
@@ -12,11 +15,13 @@ import com.google.gson.JsonObject
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Call
+import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.Multipart
 import retrofit2.http.POST
 import retrofit2.http.Part
+import retrofit2.http.Path
 
 interface ApiService  {
 
@@ -65,5 +70,7 @@ interface ApiService  {
     @GET("/event")
     fun getEvents(): Call<List<Event>>
 
+    @GET("/location/{id}")
+    fun getLocation(@Path("id") userId: String): Call<LocationResponse>
 
 }
