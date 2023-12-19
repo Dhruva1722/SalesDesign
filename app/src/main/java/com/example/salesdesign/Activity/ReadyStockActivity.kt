@@ -64,7 +64,7 @@ class ReadyStockActivity : AppCompatActivity() {
                     expandableDetailList.putAll(originalExpandableDetailList)
 
                     val expandableTitleList = ArrayList(expandableDetailList.keys)
-                    (expandableListAdapter as CustomizedExpandableListAdapter).updateData(expandableTitleList, expandableDetailList)
+                    (expandableListAdapter).updateData(expandableTitleList, expandableDetailList)
                 } else {
                     Toast.makeText(this@ReadyStockActivity, "Failed to save data", Toast.LENGTH_SHORT).show()
                 }
@@ -137,11 +137,6 @@ class ReadyStockActivity : AppCompatActivity() {
         return expandableDetailList
     }
 }
-
-//private fun ExpandableListAdapter.updateData(arrayList: ArrayList<String>, expandableDetailList: HashMap<String, List<String>>) {
-//
-//}
-
 
 data class StockResponse(
     val Emp_ID: String,

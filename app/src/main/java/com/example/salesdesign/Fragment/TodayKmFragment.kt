@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.salesdesign.Adapter.LocationAdapter
@@ -24,7 +25,7 @@ import java.util.Date
 class TodayKmFragment : Fragment() {
 
     private lateinit var locationAdapter: LocationAdapter
-    private val locations: MutableList<LocationInfo> = mutableListOf()
+    private val locations: MutableList<LocationInformation> = mutableListOf()
 
     private lateinit var sharedPreferences: SharedPreferences
     private var userId: String? = null
@@ -34,10 +35,6 @@ class TodayKmFragment : Fragment() {
 
 
         val recyclerView: RecyclerView = view.findViewById(R.id.todayList)
-        locationAdapter = LocationAdapter(locations)
-        recyclerView.layoutManager = LinearLayoutManager(context)
-        recyclerView.adapter = locationAdapter
-
 
         sharedPreferences = requireActivity().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
         userId = sharedPreferences.getString("User", null) ?: ""
@@ -45,42 +42,26 @@ class TodayKmFragment : Fragment() {
 
         val apiService = RetrofitClient.getClient().create(ApiService::class.java)
 
-        val call = apiService.getLocation(userId!!)
-        Log.d("TodayKmFragment", "Response: $call  $userId")
-
-        call.enqueue(object : Callback<LocationResponse> {
-            override fun onResponse(call: Call<LocationResponse>, response: Response<LocationResponse>) {
+        val call = apiService.getLocationInfo(userId!!)
+        call.enqueue(object : Callback<List<LocationInformation>> {
+            override fun onResponse(call: Call<List<LocationInformation>>, response: Response<List<LocationInformation>>) {
                 if (response.isSuccessful) {
-                    val locationResponse = response.body()
+                    val locationInfoList = response.body()
 
-                    // Log the entire response for debugging
-                    Log.d("============================", "Response: $locationResponse")
-
-                    if (locationResponse != null && locationResponse.status == "Success") {
-                        val locationInfoList = locationResponse.locationInfoList
-//                        locations.clear() // Clear the existing data
-                        locations.addAll(locationInfoList) // Add the new data
-                        locationAdapter.notifyDataSetChanged() // Notify the adapter of the data change
-
-                        // Log the data for debugging
-                        for (locationInfo in locationInfoList) {
-                            Log.d("TodayKmFragment", "Start Point Name: ${locationInfo.startPoint.startPointName}")
-                            Log.d("TodayKmFragment", "End Point Name: ${locationInfo.endPoint.endPointName}")
-                            Log.d("TodayKmFragment", "Distance: ${locationInfo.distance}")
-                        }
-
-
-                    }
+                    // Set up RecyclerView adapter
+                    val adapter = locationInfoList?.let { LocationAdapter(it) }
+                    recyclerView.adapter = adapter
                 } else {
-                    // Handle unsuccessful response
-                    Log.e("TodayKmFragment", "Unsuccessful response: ${response.code()}")
+                    Toast.makeText(requireContext(),"No Data available" ,  Toast.LENGTH_SHORT).show()
                 }
             }
 
-            override fun onFailure(call: Call<LocationResponse>, t: Throwable) {
-                // Handle failure
+            override fun onFailure(call: Call<List<LocationInformation>>, t: Throwable) {
+                Toast.makeText(requireContext(),"Network Error" ,  Toast.LENGTH_SHORT).show()
+                Log.d("-----", "onFailure: $t")
             }
         })
+
 
         return view
     }
@@ -89,23 +70,21 @@ class TodayKmFragment : Fragment() {
 
 
 
-data class LocationResponse(
-    @SerializedName("status") val status: String,
-    @SerializedName("message") val locationInfoList: List<LocationInfo>
+data class LocationInformation(
+    val startPoint: StartPoint,
+    val endPoint: EndPoint,
+    val distance: Double,
+    val timestamp: Long
 )
 
-data class LocationInfo(
-    @SerializedName("startPoint") val startPoint: Point,
-    @SerializedName("endPoint") val endPoint: Point,
-    @SerializedName("timestamp") val timestamp: String,
-    @SerializedName("distance") val distance: Double
+data class StartPoint(
+    val startPointName: String,
+    val startLatitude: String,
+    val startLongitude: String
 )
 
-data class Point(
-    @SerializedName("startPointname") val startPointName: String,
-    @SerializedName("startLatitude") val startLatitude: String,
-    @SerializedName("startLongitude") val startLongitude: String,
-    @SerializedName("endPointname") val endPointName: String,
-    @SerializedName("endLatitude") val endLatitude: String,
-    @SerializedName("endLongitude") val endLongitude: String
+data class EndPoint(
+    val endPointName: String,
+    val endLatitude: String,
+    val endLongitude: String
 )
