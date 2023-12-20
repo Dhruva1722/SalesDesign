@@ -53,44 +53,6 @@ class VisitsActivity : AppCompatActivity() {
 
 
 
-       searchView = findViewById(R.id.idSV)
-        val from = arrayOf("industryName")
-        val to = intArrayOf(android.R.id.text1)
-        val suggestionAdapter = SimpleCursorAdapter(
-            this,
-            android.R.layout.simple_dropdown_item_1line,
-            null,
-            from,
-            to,
-            CursorAdapter.FLAG_REGISTER_CONTENT_OBSERVER
-        )
-        searchView.suggestionsAdapter = suggestionAdapter
-
-        // Add a text change listener to the search view
-        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-            override fun onQueryTextSubmit(query: String?): Boolean {
-                return false
-            }
-
-            override fun onQueryTextChange(newText: String?): Boolean {
-                filterCustomers(newText)
-                return true
-            }
-        })
-
-        // Update the suggestions when the search view is expanded
-        searchView.setOnSuggestionListener(object : SearchView.OnSuggestionListener {
-            override fun onSuggestionSelect(position: Int): Boolean {
-                return false
-            }
-
-            override fun onSuggestionClick(position: Int): Boolean {
-                // Handle suggestion click if needed
-                return true
-            }
-        })
-
-
         TabLayoutMediator(tabLayout, viewPager) { tab, position ->
             when (position) {
                 0 -> tab.text = "Add Customer"
@@ -107,17 +69,17 @@ class VisitsActivity : AppCompatActivity() {
 
     }
 
-    private fun filterCustomers(query: String?) {
-        query?.let {
-            val cursor = MatrixCursor(arrayOf(BaseColumns._ID, "industryName"))
-            for ((index, suggestion) in industrySuggestions.withIndex()) {
-                if (suggestion.contains(query, ignoreCase = true)) {
-                    cursor.addRow(arrayOf(index, suggestion))
-                }
-            }
-            (searchView.suggestionsAdapter as SimpleCursorAdapter).changeCursor(cursor)
-        }
-    }
+//    private fun filterCustomers(query: String?) {
+//        query?.let {
+//            val cursor = MatrixCursor(arrayOf(BaseColumns._ID, "industryName"))
+//            for ((index, suggestion) in industrySuggestions.withIndex()) {
+//                if (suggestion.contains(query, ignoreCase = true)) {
+//                    cursor.addRow(arrayOf(index, suggestion))
+//                }
+//            }
+//            (searchView.suggestionsAdapter as SimpleCursorAdapter).changeCursor(cursor)
+//        }
+//    }
 }
 
 class MenuPagerAdapter(fragment: VisitsActivity) : FragmentStateAdapter(fragment) {

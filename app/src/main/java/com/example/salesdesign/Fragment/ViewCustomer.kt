@@ -14,6 +14,7 @@ import com.example.salesdesign.Adapter.CustomerAdapter
 import com.example.salesdesign.R
 import com.example.salesdesign.Retrofit.ApiService
 import com.example.salesdesign.Retrofit.RetrofitClient
+import android.widget.SearchView
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -25,6 +26,7 @@ class ViewCustomer : Fragment() {
 
     private lateinit var sharedPreferences: SharedPreferences
     private lateinit var apiService: ApiService
+    private lateinit var searchView: SearchView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -43,6 +45,20 @@ class ViewCustomer : Fragment() {
         recyclerView.adapter = customerAdapter
 
         fetchDataFromApi()
+
+        searchView = view.findViewById(R.id.customerSearch)
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                // Filter data in the adapter based on the search query
+                customerAdapter.filterData(newText.orEmpty())
+                return true
+            }
+        })
+
 
         return view
     }

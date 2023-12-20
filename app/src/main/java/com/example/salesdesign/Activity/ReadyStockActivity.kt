@@ -8,6 +8,8 @@ import android.widget.ExpandableListView
 import android.widget.ImageView
 import android.widget.SearchView
 import android.widget.Toast
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.salesdesign.MainActivity
 import com.example.salesdesign.R
 import com.example.salesdesign.Retrofit.ApiService
@@ -20,14 +22,11 @@ import com.example.salesdesign.Adapter.CustomizedExpandableListAdapter
 
 class ReadyStockActivity : AppCompatActivity() {
 
-    private lateinit var expandableListViewExample: ExpandableListView
-    private lateinit var expandableListAdapter: CustomizedExpandableListAdapter
-    private lateinit var expandableDetailList: HashMap<String, List<String>>
-    private lateinit var originalExpandableDetailList: HashMap<String, List<String>>
-
+    private lateinit var expandableListViewExample: RecyclerView
     private lateinit var searchView: SearchView
     private lateinit var backbtn: ImageView
 
+    private lateinit var adapter: CustomizedExpandableListAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_ready_stock)
@@ -43,100 +42,48 @@ class ReadyStockActivity : AppCompatActivity() {
         expandableListViewExample = findViewById(R.id.expandableListViewSample)
         searchView = findViewById(R.id.idSV)
 
-
-        expandableDetailList = HashMap()
-        originalExpandableDetailList = HashMap()
-        expandableListAdapter = CustomizedExpandableListAdapter(this, ArrayList(), expandableDetailList)
-        expandableListViewExample.setAdapter(expandableListAdapter)
-        setupSearchView()
-
-
-        val apiService = RetrofitClient.getClient().create(ApiService::class.java)
-
-        apiService.getStockData().enqueue(object : Callback<List<StockResponse>> {
-            override fun onResponse(
-                call: Call<List<StockResponse>>,
-                response: Response<List<StockResponse>>
-            ) {
-                if (response.isSuccessful) {
-                    // Process the API response and update the UI
-                    originalExpandableDetailList = processStockData(response.body())
-                    expandableDetailList.putAll(originalExpandableDetailList)
-
-                    val expandableTitleList = ArrayList(expandableDetailList.keys)
-                    (expandableListAdapter).updateData(expandableTitleList, expandableDetailList)
-                } else {
-                    Toast.makeText(this@ReadyStockActivity, "Failed to save data", Toast.LENGTH_SHORT).show()
-                }
-            }
-
-            override fun onFailure(call: Call<List<StockResponse>>, t: Throwable) {
-                t.printStackTrace()
-                Toast.makeText(this@ReadyStockActivity, "Network error", Toast.LENGTH_SHORT).show()
-            }
-        })
-    }
-
-    private fun setupSearchView() {
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 return false
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
-                filterExpandableList(newText)
+                adapter.filterData(newText.orEmpty())
                 return true
+            }
+        })
+
+
+        val recyclerView: RecyclerView = findViewById(R.id.expandableListViewSample)
+        val apiService = RetrofitClient.getClient().create(ApiService::class.java)
+        val call: Call<List<StockResponse>> = apiService.getStockData()
+        call.enqueue(object : Callback<List<StockResponse>> {
+            override fun onResponse(call: Call<List<StockResponse>>, response: Response<List<StockResponse>>) {
+                if (response.isSuccessful) {
+                    val data: List<StockResponse>? = response.body()
+
+                    data?.let {
+                        // Use the retrieved data to populate the RecyclerView
+                         adapter = CustomizedExpandableListAdapter(it)
+                        recyclerView.layoutManager = LinearLayoutManager(this@ReadyStockActivity)
+                        recyclerView.adapter = adapter
+                    }
+                } else {
+                    // Handle unsuccessful response
+                }
+            }
+
+            override fun onFailure(call: Call<List<StockResponse>>, t: Throwable) {
+                // Handle network failure
             }
         })
     }
 
-    private fun filterExpandableList(query: String?) {
-        val filteredTitleList = ArrayList<String>()
-        val filteredDetailList = HashMap<String, List<String>>()
 
-        if (query.isNullOrEmpty()) {
-            filteredTitleList.addAll(originalExpandableDetailList.keys)
-            filteredDetailList.putAll(originalExpandableDetailList)
-        } else {
-            for ((key, value) in originalExpandableDetailList) {
-                if (key.contains(query, ignoreCase = true) || containsItem(value, query)) {
-                    filteredTitleList.add(key)
-                    filteredDetailList[key] = value
-                }
-            }
-        }
-        expandableListAdapter.updateData(filteredTitleList, filteredDetailList)
     }
 
-    private fun containsItem(itemList: List<String>, query: String): Boolean {
-        for (item in itemList) {
-            if (item.contains(query, ignoreCase = true)) {
-                return true
-            }
-        }
-        return false
-    }
 
-    // Function to process the API response and create expandableDetailList
-    private fun processStockData(stockList: List<StockResponse>?): HashMap<String, List<String>> {
-        val expandableDetailList = HashMap<String, List<String>>()
 
-        stockList?.forEach { stock ->
-            val stockInfo = listOf(
-                " No: ${stock.Emp_ID}",
-                " MFG Section : ${stock.Emp_name}",
-                " Category: ${stock.Emp_department}",
-                "Model: ${stock.Emp_country}",
-                "Product: ${stock.Emp_blood_group}",
-                " Stock : ${stock.Emp_state}"
-            )
-            expandableDetailList["${stock.Emp_ID}  ${stock.Emp_name}  ${stock.Emp_department}"] =
-                stockInfo
-        }
-
-        return expandableDetailList
-    }
-}
 
 data class StockResponse(
     val Emp_ID: String,
@@ -144,7 +91,8 @@ data class StockResponse(
     val Emp_department: String,
     val Emp_country: String,
     val Emp_blood_group: String,
-    val Emp_state: String
+    val Emp_state: String,
+    var isExpanded: Boolean = false
 )
 
 

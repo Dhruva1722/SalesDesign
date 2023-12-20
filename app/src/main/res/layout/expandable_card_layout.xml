@@ -1,101 +1,107 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="10dp"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
     android:id="@+id/cardView">
     <LinearLayout
-        android:id="@+id/cardContainer"
+        android:id="@+id/headerLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="10dp"
-        android:background="@drawable/listcard"
-        android:orientation="vertical">
+        android:orientation="horizontal"
+        android:clickable="true"
+        android:layout_marginTop="5dp"
+        android:focusable="true"
+        android:background="#F9FBFF">
 
-        <!-- Title TextView (Clickable) -->
+        <ImageView
+            android:id="@+id/arrowIcon"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/baseline_arrow_drop_up_24"
+            android:layout_marginLeft="10dp"
+            android:layout_gravity="center_vertical"/>
+
         <TextView
-            android:id="@+id/viewTitle"
-            android:layout_width="wrap_content"
+            android:id="@+id/listTitle"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="15dp"
-            android:layout_marginBottom="5dp"
-            android:textColor="@color/white"
-            android:textSize="17sp"/>
-
-        <!-- Expandable content (Initially hidden) -->
-        <LinearLayout
-            android:id="@+id/expandableContent"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:visibility="gone"
-            android:orientation="vertical">
-
-            <!-- Additional details go here -->
-            <TextView
-                android:id="@+id/viewNo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
-                android:layout_marginBottom="5dp"
-                android:textColor="@color/white"
-                android:textSize="17sp" />
-
-            <!-- Additional details go here -->
-            <TextView
-                android:id="@+id/viewMFG"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
-                android:layout_marginBottom="5dp"
-                android:textColor="@color/white"
-                android:textSize="17sp" />
-
-
-            <!-- Additional details go here -->
-            <TextView
-                android:id="@+id/viewCategory"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
-                android:layout_marginBottom="5dp"
-                android:textColor="@color/white"
-                android:textSize="17sp" />
-
-
-            <!-- Additional details go here -->
-            <TextView
-                android:id="@+id/viewModel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
-                android:layout_marginBottom="5dp"
-                android:textColor="@color/white"
-                android:textSize="17sp" />
-
-
-            <TextView
-                android:id="@+id/viewProduct"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
-                android:layout_marginBottom="5dp"
-                android:textColor="@color/white"
-                android:textSize="17sp" />
-
-            <TextView
-                android:id="@+id/viewStock"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
-                android:layout_marginBottom="5dp"
-                android:textColor="@color/white"
-                android:textSize="17sp" />
-        </LinearLayout>
+            android:paddingLeft="?android:attr/expandableListPreferredItemPaddingLeft"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:textColor="#1760D3"
+            android:layout_marginStart="5dp"/>
 
     </LinearLayout>
 
-</androidx.cardview.widget.CardView>
+    <!-- Expandable content -->
+    <LinearLayout
+        android:id="@+id/expandableLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:background="#F9FBFF"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/viewNo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginBottom="5dp"
+            android:textColor="@color/black"
+            android:textSize="17sp" />
+
+        <!-- Additional details go here -->
+        <TextView
+            android:id="@+id/viewMFG"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginBottom="5dp"
+            android:textColor="@color/black"
+            android:textSize="17sp" />
+
+
+        <!-- Additional details go here -->
+        <TextView
+            android:id="@+id/viewCategory"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginBottom="5dp"
+            android:textColor="@color/black"
+            android:textSize="17sp" />
+
+
+        <!-- Additional details go here -->
+        <TextView
+            android:id="@+id/viewModel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginBottom="5dp"
+            android:textColor="@color/black"
+            android:textSize="17sp" />
+
+        <TextView
+            android:id="@+id/viewProduct"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginBottom="5dp"
+            android:textColor="@color/black"
+            android:textSize="17sp" />
+
+        <TextView
+            android:id="@+id/viewStock"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginBottom="5dp"
+            android:textColor="@color/black"
+            android:textSize="17sp" />
+    </LinearLayout>
+
+
+</LinearLayout>

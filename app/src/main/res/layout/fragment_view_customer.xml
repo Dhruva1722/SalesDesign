@@ -10,6 +10,25 @@
       android:layout_height="match_parent"
       android:background="#E1EDF9">
 
+    <LinearLayout
+        android:id="@+id/searchLY"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="11dp"
+        android:layout_marginEnd="10dp"
+        android:background="@drawable/searchbg">
+
+      <SearchView
+          android:id="@+id/customerSearch"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_margin="8dp"
+          android:iconifiedByDefault="false"
+          android:queryHint="Search Customer" />
+
+    </LinearLayout>
+
 
 
     <androidx.recyclerview.widget.RecyclerView
@@ -19,6 +38,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
+        android:layout_below="@id/searchLY"
         android:background="@drawable/listbg"
         android:layout_marginBottom="10dp"/>
 

@@ -48,9 +48,11 @@ class TodayKmFragment : Fragment() {
                 if (response.isSuccessful) {
                     val locationInfoList = response.body()
 
-                    // Set up RecyclerView adapter
-                    val adapter = locationInfoList?.let { LocationAdapter(it) }
-                    recyclerView.adapter = adapter
+                    // Set up RecyclerView adapter using the locationAdapter field
+                    locationInfoList?.let {
+                        locationAdapter = LocationAdapter(it)
+                        recyclerView.adapter = locationAdapter
+                    }
                 } else {
                     Toast.makeText(requireContext(),"No Data available" ,  Toast.LENGTH_SHORT).show()
                 }

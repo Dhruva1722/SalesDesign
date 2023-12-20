@@ -54,8 +54,6 @@ interface ApiService  {
 
 
 
-
-
   // get data
     @GET("/customer")
     fun getCustomers(): Call<List<Customer>>
