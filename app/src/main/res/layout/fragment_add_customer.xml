@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Fragment.AddCustomer"
-    android:background="#E1EDF9">
+    android:background="#e3e8ec">
 
 
     <ScrollView
@@ -16,7 +16,8 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/listbg"
+        android:background="@drawable/rectangle_card3"
+        android:elevation="10dp"
         android:layout_margin="10dp">
 
 
@@ -27,7 +28,7 @@
                android:text="Add Customer"
                android:textSize="20sp"
                android:textStyle="bold"
-               android:textColor="#1760D3"
+               android:textColor="#373839"
                android:layout_marginTop="10dp"
                android:layout_centerHorizontal="true"/>
 
@@ -157,9 +158,11 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:text="Add"
-            android:backgroundTint="#1181E0"
+            android:textColor="@color/white"
+            android:backgroundTint="#989898"
             android:layout_below="@id/customerReasonID"
-            android:layout_marginTop="10dp"/>
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"/>
 
     </RelativeLayout>
 

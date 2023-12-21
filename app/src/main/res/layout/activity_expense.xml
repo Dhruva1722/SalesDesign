@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Activity.ExpenseActivity"
-    android:background="#E1EDF9">
+    android:background="#e3e8ec">
 
 
     <RelativeLayout
@@ -15,7 +15,8 @@
         android:layout_marginStart="5dp"
         android:layout_marginEnd="5dp"
         android:layout_marginTop="5dp"
-        android:background="@drawable/blueheader">
+        android:elevation="10dp"
+        android:background="#ffffff">
 
         <ImageView
             android:id="@+id/backArrow"
@@ -31,7 +32,7 @@
             android:layout_height="wrap_content"
             android:text="Expenses"
             android:textSize="20sp"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textStyle="bold"
             android:layout_toRightOf="@id/backArrow"
             android:layout_centerVertical="true"
@@ -70,7 +71,7 @@
             android:layout_height="wrap_content"
             android:text="Chhose Transportation"
             android:textSize="20sp"
-            android:textColor="#1760D3"
+            android:textColor="#101010"
             android:textStyle="bold"
             android:layout_marginTop="10dp"
             android:layout_marginStart="10dp"/>
@@ -167,15 +168,20 @@
         <ScrollView
             android:id="@+id/inputLy"
             android:layout_width="match_parent"
-            android:layout_height="300dp"
+            android:layout_height="350dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
             android:layout_below="@id/radoibtnID">
 
     <LinearLayout
         android:layout_width="350dp"
-        android:layout_height="wrap_content"
-       android:layout_gravity="center_horizontal"
-        android:background="@drawable/inputbg"
+        android:layout_height="300dp"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/rectangle_card"
+        android:elevation="10dp"
         android:layout_marginTop="20dp"
+        android:layout_marginBottom="60dp"
+        android:backgroundTint="@color/white"
         android:orientation="vertical">
 
         <EditText
@@ -198,7 +204,7 @@
         <EditText
             android:id="@+id/ticketId"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:hint="Ticket expense"
             android:layout_marginTop="10dp"
             android:layout_marginStart="15dp"
@@ -207,7 +213,7 @@
         <EditText
             android:id="@+id/hotelExpenseId"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:hint="Hotel expense"
             android:layout_marginTop="10dp"
             android:layout_marginStart="15dp"
@@ -230,7 +236,8 @@
             android:hint="Fuel if you ride with two or four wheeler"
             android:layout_marginTop="10dp"
             android:layout_marginStart="15dp"
-            android:layout_marginEnd="15dp"/>
+            android:layout_marginEnd="15dp"
+            android:layout_marginBottom="40dp"/>
 
 
 
@@ -245,7 +252,9 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="15dp"
             android:gravity="center_horizontal"
-            android:background="@drawable/inputbg">
+            android:elevation="10dp"
+            android:background="@drawable/rectangle_card"
+            android:backgroundTint="@color/white">
 
             <ImageView
                 android:id="@+id/imagePicker"
@@ -275,6 +284,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Save"
+        android:elevation="10dp"
         android:layout_below="@id/transportationLY"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="30dp"/>

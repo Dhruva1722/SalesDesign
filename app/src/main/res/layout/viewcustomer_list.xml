@@ -1,28 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardElevation="10dp"
+    app:cardCornerRadius="20dp"
+    android:layout_margin="12dp"
+    app:cardBackgroundColor="@color/white"
+    app:cardMaxElevation="12dp"
+    app:cardPreventCornerOverlap="true">
 
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="10dp"
-        android:background="@drawable/listcard"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="10dp">
 
         <TextView
             android:id="@+id/viewName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="5dp"
             android:layout_marginLeft="15dp"
             android:layout_marginBottom="5dp"
             android:text="Nick Jhons"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textSize="17sp"/>
 
 
@@ -33,7 +36,7 @@
             android:layout_marginLeft="15dp"
             android:layout_marginBottom="5dp"
             android:text="232435454"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textSize="17sp" />
 
         <TextView
@@ -43,7 +46,7 @@
             android:layout_marginLeft="15dp"
             android:layout_marginBottom="5dp"
             android:text="Multispan Control Instrument "
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textSize="15sp" />
 
         <TextView
@@ -53,7 +56,7 @@
             android:layout_marginLeft="15dp"
             android:layout_marginBottom="5dp"
             android:text="Multispan Control Instrument "
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textSize="15sp" />
 
 
@@ -64,11 +67,11 @@
             android:layout_marginLeft="15dp"
             android:layout_marginBottom="5dp"
             android:text="Reason about visiting customer"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textSize="15sp" />
 
     </LinearLayout>
 
 
 
-</RelativeLayout>
+</androidx.cardview.widget.CardView>

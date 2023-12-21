@@ -5,37 +5,27 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
-    android:background="#E1EDF9">
+    android:background="#e3e8ec">
 
     <RelativeLayout
         android:id="@+id/firstRL"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:background="@drawable/blueheader"
         android:layout_marginEnd="5dp"
         android:layout_marginStart="5dp"
-        android:layout_marginTop="5dp">
+        android:layout_marginTop="5dp"
+        android:elevation="10dp"
+        android:background="#ffffff">
 
 
     <ImageView
         android:id="@+id/multispan_logo"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:src="@drawable/multispan_logo"
-        app:tint="@color/white"
-        android:layout_marginTop="10dp"
+        android:layout_width="150dp"
+        android:layout_height="70dp"
+        android:src="@drawable/logo1"
+        app:tint="@color/black"
         android:layout_marginStart="10dp"/>
 
-
-    <TextView
-        android:id="@+id/multispanTxt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="ultispan"
-        android:textColor="@color/white"
-        android:textStyle="bold"
-        android:layout_toRightOf="@id/multispan_logo"
-        android:layout_marginTop="20dp"/>
 
 
         <ImageView
@@ -55,28 +45,6 @@
             android:layout_marginTop="12dp"
             android:layout_marginEnd="10dp"/>
 
-
-    <!--    <TextView-->
-    <!--        android:id="@+id/companyTxt"-->
-    <!--        android:layout_width="wrap_content"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:text="Welcome to our company"-->
-    <!--        android:textColor="@color/white"-->
-    <!--        android:layout_below="@id/multispanTxt"-->
-    <!--        android:layout_marginStart="10dp"-->
-    <!--        android:layout_marginTop="30dp"/>-->
-
-    <!--    <TextView-->
-    <!--        android:id="@+id/company1Txt"-->
-    <!--        android:layout_width="wrap_content"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:text="MULTISPAN CONTROL INSTRUMENT PVT LTD"-->
-    <!--        android:textColor="@color/white"-->
-    <!--        android:textStyle="bold"-->
-    <!--        android:layout_below="@id/companyTxt"-->
-    <!--        android:layout_marginStart="10dp"-->
-    <!--        android:layout_marginTop="10dp"/>-->
-
     </RelativeLayout>
 
 
@@ -93,11 +61,9 @@
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:layout_alignParentBottom="true"
-            android:layout_marginBottom="5dp"
-            android:background="@drawable/blueheader"
-            app:menu="@menu/bottom_menu"
-            android:layout_marginStart="5dp"
-            android:layout_marginEnd="5dp"/>
+            android:elevation="10dp"
+            android:background="@drawable/bottombg"
+            app:menu="@menu/bottom_menu" />
 
 
 </RelativeLayout>

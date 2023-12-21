@@ -1,59 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Fragment.DashboardFragment"
-    android:background="#E1EDF9">
+    android:background="#e3e8ec">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
 
         <TextView
             android:id="@+id/dashboardTxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
             android:text="DASHBOARD"
-            android:textStyle="bold"
+            android:textColor="#101010"
             android:textSize="20sp"
-            android:textColor="#1760D3"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"/>
+            android:textStyle="bold" />
 
-        <RelativeLayout
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:padding="10dp"
+        android:layout_below="@id/dashboardTxt">
+
+
+
+    <RelativeLayout
             android:id="@+id/expenseLy"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="40dp"
-            android:background="#E1EDF9">
+            android:layout_width="160dp"
+            android:layout_height="120dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/rectangle_card"
+            android:backgroundTint="@color/white"
+            android:padding="10dp">
 
-            <RelativeLayout
-                android:layout_width="150dp"
-                android:layout_height="100dp"
-                android:layout_marginTop="30dp"
-                android:layout_marginStart="10dp"
-                android:background="@drawable/card2">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="15dp"
+                android:layout_marginBottom="10dp"
+                android:text="Expense"
+                android:textColor="#1B1B1B"
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Expense"
-                    android:textSize="20sp"
-                    android:textColor="#1760D3"
-                    android:layout_alignParentBottom="true"
-                    android:layout_marginBottom="10dp"
-                    android:layout_marginStart="15dp"
-                    android:textStyle="bold"/>
-
-
-            </RelativeLayout>
 
             <ImageView
-                android:layout_width="50dp"
-                android:layout_height="60dp"
-                android:layout_marginStart="100dp"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="10dp"
                 android:src="@drawable/medical" />
 
         </RelativeLayout>
@@ -61,186 +61,161 @@
 
         <RelativeLayout
             android:id="@+id/kmsLY"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="160dp"
+            android:layout_height="120dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
             android:layout_toRightOf="@id/expenseLy"
-            android:layout_marginStart="15dp"
-            android:layout_marginTop="40dp"
-            android:background="#E1EDF9">
-
-            <RelativeLayout
-                android:layout_width="150dp"
-                android:layout_height="100dp"
-                android:layout_marginTop="30dp"
-                android:layout_marginStart="10dp"
-                android:background="@drawable/card2">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="KMS"
-                    android:textColor="#1760D3"
-                    android:textSize="20sp"
-                    android:layout_alignParentBottom="true"
-                    android:layout_marginBottom="10dp"
-                    android:layout_marginStart="15dp"
-                    android:textStyle="bold"/>
+            android:background="@drawable/rectangle_card2"
+            android:backgroundTint="@color/white"
+            android:padding="10dp">
 
 
-            </RelativeLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="15dp"
+                android:layout_marginBottom="10dp"
+                android:text="KMS"
+                android:textColor="#1B1B1B"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+
             <ImageView
-                android:layout_width="50dp"
-                android:layout_height="60dp"
-                android:layout_marginStart="100dp"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="10dp"
                 android:src="@drawable/electriccar" />
 
         </RelativeLayout>
 
         <RelativeLayout
             android:id="@+id/visitingLY"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="160dp"
+            android:layout_height="120dp"
             android:layout_below="@id/expenseLy"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="20dp"
-            android:background="#E1EDF9">
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/rectangle_card2"
+            android:backgroundTint="@color/white"
+            android:padding="10dp">
 
-            <RelativeLayout
-                android:layout_width="150dp"
-                android:layout_height="100dp"
-                android:layout_marginTop="30dp"
-                android:layout_marginStart="10dp"
-                android:background="@drawable/card2">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Visits"
-                    android:textSize="20sp"
-                    android:textColor="#1760D3"
-                    android:layout_alignParentBottom="true"
-                    android:layout_marginBottom="10dp"
-                    android:layout_marginStart="15dp"
-                    android:textStyle="bold"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="15dp"
+                android:layout_marginBottom="10dp"
+                android:text="Visits"
+                android:textColor="#1B1B1B"
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
-            </RelativeLayout>
             <ImageView
-                android:layout_width="50dp"
-                android:layout_height="60dp"
-                android:layout_marginStart="100dp"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="10dp"
                 android:src="@drawable/tablet" />
 
         </RelativeLayout>
 
         <RelativeLayout
             android:id="@+id/customerLY"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="160dp"
+            android:layout_height="120dp"
             android:layout_below="@id/kmsLY"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
             android:layout_toRightOf="@id/visitingLY"
-            android:layout_marginStart="15dp"
-            android:layout_marginTop="20dp"
-            android:background="#E1EDF9">
-
-            <RelativeLayout
-                android:layout_width="150dp"
-                android:layout_height="100dp"
-                android:layout_marginTop="30dp"
-                android:layout_marginStart="10dp"
-                android:background="@drawable/card2">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Customer List"
-                    android:textSize="20sp"
-                    android:textColor="#1760D3"
-                    android:layout_alignParentBottom="true"
-                    android:layout_marginBottom="10dp"
-                    android:layout_marginStart="15dp"
-                    android:textStyle="bold"/>
+            android:background="@drawable/rectangle_card"
+            android:backgroundTint="@color/white"
+            android:padding="10dp">
 
 
-            </RelativeLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="15dp"
+                android:layout_marginBottom="5dp"
+                android:text="Customer List"
+                android:textColor="#1B1B1B"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+
             <ImageView
-                android:layout_width="50dp"
-                android:layout_height="60dp"
-                android:layout_marginStart="100dp"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="10dp"
                 android:src="@drawable/evaluation" />
 
         </RelativeLayout>
 
         <RelativeLayout
             android:id="@+id/salesLy"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="160dp"
+            android:layout_height="120dp"
             android:layout_below="@id/visitingLY"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="20dp"
-            android:background="#E1EDF9">
-
-            <RelativeLayout
-                android:layout_width="150dp"
-                android:layout_height="100dp"
-                android:layout_marginTop="30dp"
-                android:layout_marginStart="10dp"
-                android:background="@drawable/card2">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Sales Analaytics"
-                    android:textSize="20sp"
-                    android:textColor="#1760D3"
-                    android:layout_alignParentBottom="true"
-                    android:layout_marginBottom="10dp"
-                    android:layout_marginStart="15dp"
-                    android:textStyle="bold"/>
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/rectangle_card"
+            android:backgroundTint="@color/white"
+            android:padding="10dp">
 
 
-            </RelativeLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="15dp"
+                android:layout_marginBottom="5dp"
+                android:text="Sales Analaytics"
+                android:textColor="#1B1B1B"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+
             <ImageView
-                android:layout_width="50dp"
-                android:layout_height="60dp"
-                android:layout_marginStart="100dp"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="10dp"
                 android:src="@drawable/analytics" />
 
         </RelativeLayout>
 
         <RelativeLayout
             android:id="@+id/readStockLY"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="160dp"
+            android:layout_height="120dp"
             android:layout_below="@id/customerLY"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
             android:layout_toRightOf="@id/salesLy"
-            android:layout_marginStart="15dp"
-            android:layout_marginTop="20dp"
-            android:background="#E1EDF9">
+            android:backgroundTint="@color/white"
+            android:background="@drawable/rectangle_card2"
+            android:padding="10dp">
 
-            <RelativeLayout
-                android:layout_width="150dp"
-                android:layout_height="100dp"
-                android:layout_marginTop="30dp"
-                android:layout_marginStart="10dp"
-                android:background="@drawable/card2">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Ready Stock"
-                    android:textSize="20sp"
-                    android:textColor="#1760D3"
-                    android:layout_alignParentBottom="true"
-                    android:layout_marginBottom="10dp"
-                    android:layout_marginStart="15dp"
-                    android:textStyle="bold"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="15dp"
+                android:layout_marginBottom="10dp"
+                android:text="Ready Stock"
+                android:textColor="#1B1B1B"
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
-            </RelativeLayout>
 
             <ImageView
-                android:layout_width="50dp"
-                android:layout_height="60dp"
-                android:layout_marginStart="100dp"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="10dp"
                 android:src="@drawable/box" />
 
         </RelativeLayout>
@@ -248,44 +223,37 @@
 
         <RelativeLayout
             android:id="@+id/mapLy"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="320dp"
+            android:layout_height="120dp"
             android:layout_below="@id/salesLy"
-            android:layout_marginStart="60dp"
-            android:layout_marginEnd="60dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="10dp"
-            android:background="#E1EDF9">
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:gravity="center_vertical"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/rectangle_card1"
+            android:backgroundTint="@color/white"
+            android:padding="10dp">
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:layout_marginTop="30dp"
-                android:layout_marginStart="10dp"
-                android:background="@drawable/card2">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginStart="15dp"
+                android:layout_marginBottom="5dp"
+                android:text="Map Direction"
+                android:textColor="#1B1B1B"
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Map Direction"
-                    android:textSize="20sp"
-                    android:textColor="#1760D3"
-                    android:layout_alignParentBottom="true"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginBottom="15dp"
-                    android:layout_marginStart="15dp"
-                    android:textStyle="bold"/>
-
-            </RelativeLayout>
 
             <ImageView
-                android:layout_width="50dp"
-                android:layout_height="60dp"
-                android:layout_centerHorizontal="true"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="40dp"
                 android:src="@drawable/googlemaps" />
 
         </RelativeLayout>
 
     </RelativeLayout>
 
-</FrameLayout>
+</RelativeLayout>

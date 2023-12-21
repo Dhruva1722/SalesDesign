@@ -12,7 +12,7 @@
         android:clickable="true"
         android:layout_marginTop="5dp"
         android:focusable="true"
-        android:background="#F9FBFF">
+        android:background="#FFFFFF">
 
         <ImageView
             android:id="@+id/arrowIcon"
@@ -29,7 +29,7 @@
             android:paddingLeft="?android:attr/expandableListPreferredItemPaddingLeft"
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
-            android:textColor="#1760D3"
+            android:textColor="#333333"
             android:layout_marginStart="5dp"/>
 
     </LinearLayout>
@@ -40,7 +40,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:visibility="gone"
-        android:background="#F9FBFF"
+        android:background="#FFFFFF"
         android:orientation="vertical">
 
         <TextView

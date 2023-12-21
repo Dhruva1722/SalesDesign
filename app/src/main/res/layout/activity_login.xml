@@ -5,16 +5,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Activity.LoginActivity"
-    android:background="#E1EDF9">
-
-
+    android:background="#e3e8ec">
 
 
     <LinearLayout
         android:id="@+id/bgLayout1"
         android:layout_width="match_parent"
         android:layout_height="300dp"
-        android:background="@drawable/blueheader"
+        android:background="@drawable/rectangle_card3"
+        android:backgroundTint="#787878"
         android:orientation="vertical"
         android:layout_marginStart="5dp"
         android:layout_marginTop="5dp"
@@ -46,7 +45,7 @@
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="10dp"
         android:text="Login"
-        android:textColor="#1760D3"
+        android:textColor="#4F5051"
         android:textSize="25sp"
         android:textStyle="bold" />
 
@@ -82,7 +81,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:passwordToggleEnabled="true"
-            app:passwordToggleTint="#1760D3">
+            app:passwordToggleTint="#FF000000">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/loginPasswordID"

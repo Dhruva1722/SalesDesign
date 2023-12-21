@@ -3,16 +3,12 @@ package com.example.salesdesign.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
 import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.LinearLayout
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.salesdesign.Fragment.MonthKmFragment
 import com.example.salesdesign.Fragment.TodayKmFragment
 import com.example.salesdesign.Fragment.WeekKmFragment
-import com.example.salesdesign.Fragment.YearKmFragment
 import com.example.salesdesign.MainActivity
 import com.example.salesdesign.R
 
@@ -26,7 +22,7 @@ class KMSActivity : AppCompatActivity() {
     private lateinit var todayKm : LinearLayout
     private lateinit var weekKm : LinearLayout
     private lateinit var monthKm : LinearLayout
-    private lateinit var yearKm : LinearLayout
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,7 +32,7 @@ class KMSActivity : AppCompatActivity() {
         todayKm = findViewById(R.id.todayKmLy)
         weekKm = findViewById(R.id.weekKmLy)
         monthKm = findViewById(R.id.monthKmLy)
-        yearKm = findViewById(R.id.yearKmLy)
+
 
 
         backbtn = findViewById(R.id.backArrow)
@@ -77,13 +73,7 @@ class KMSActivity : AppCompatActivity() {
                     .commit()
             }
 
-            yearKm.setOnClickListener {
-                val yearFragment = YearKmFragment()
-                fragmentManager.beginTransaction()
-                    .replace(R.id.showCardDetails, yearFragment)
-                    .addToBackStack(null)
-                    .commit()
-            }
+
         }
 
 

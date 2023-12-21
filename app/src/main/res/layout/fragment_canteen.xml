@@ -10,7 +10,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#E1EDF9"
+        android:background="#e3e8ec"
         android:gravity="center_horizontal"
         android:layout_gravity="center">
 
@@ -30,7 +30,7 @@
                 android:layout_marginTop="30dp"
                 android:layout_marginEnd="10dp"
                 android:gravity="center"
-                android:background="@drawable/card1">
+                android:background="@drawable/rectangle_card3">
 
                 <ImageView
                     android:layout_width="50dp"
@@ -52,7 +52,7 @@
                 android:id="@+id/saturdayCard"
                 android:layout_width="150dp"
                 android:layout_height="120dp"
-                android:background="@drawable/card1"
+                android:background="@drawable/rectangle_card3"
                 android:orientation="vertical"
                 android:layout_marginTop="30dp"
                 android:layout_marginStart="10dp"
@@ -82,7 +82,8 @@
             android:id="@+id/menuCard"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/listbg"
+            android:background="#ffff"
+            android:elevation="10dp"
             android:orientation="vertical"
             android:layout_marginTop="20dp"
             android:layout_marginStart="15dp"

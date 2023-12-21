@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Activity.VisitsActivity"
-    android:background="#E1EDF9">
+    android:background="#e3e8ec">
 
 
     <RelativeLayout
@@ -15,7 +15,8 @@
         android:layout_marginStart="5dp"
         android:layout_marginEnd="5dp"
         android:layout_marginTop="5dp"
-        android:background="@drawable/blueheader">
+        android:background="#ffff"
+        android:elevation="10dp">
 
         <ImageView
             android:id="@+id/backArrow"
@@ -31,7 +32,7 @@
             android:layout_height="wrap_content"
             android:text="Visits"
             android:textSize="20sp"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textStyle="bold"
             android:layout_toRightOf="@id/backArrow"
             android:layout_centerVertical="true"

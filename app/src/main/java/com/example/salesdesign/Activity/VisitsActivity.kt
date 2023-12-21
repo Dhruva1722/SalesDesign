@@ -29,17 +29,6 @@ class VisitsActivity : AppCompatActivity() {
     private lateinit var tabLayout: TabLayout
     private lateinit var adapter: MenuPagerAdapter
     private lateinit var backbtn : ImageView
-    private lateinit var searchView: SearchView
-
-
-    private lateinit var customerAdapter: CustomerAdapter
-    private lateinit var customers: List<Customer>
-
-
-    private val industrySuggestions = listOf("Stone cutting machines manufacturer", "Plastic processing & Post extrusion equipment", "Chiller manufacturer",
-        "Paper Cup Making  Machine", "Stone cutting"," Panel Builder" , "Blood Bank Equipment, Covid lab Equipment , Hospital Furniture" ,
-        "Blow Moulding Machine, Homeopathic Bottle Making machine , Plastic Gum Tube Making Machine etc"," The Hydraulic Company ", " Elevator manufacturer")
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -69,17 +58,6 @@ class VisitsActivity : AppCompatActivity() {
 
     }
 
-//    private fun filterCustomers(query: String?) {
-//        query?.let {
-//            val cursor = MatrixCursor(arrayOf(BaseColumns._ID, "industryName"))
-//            for ((index, suggestion) in industrySuggestions.withIndex()) {
-//                if (suggestion.contains(query, ignoreCase = true)) {
-//                    cursor.addRow(arrayOf(index, suggestion))
-//                }
-//            }
-//            (searchView.suggestionsAdapter as SimpleCursorAdapter).changeCursor(cursor)
-//        }
-//    }
 }
 
 class MenuPagerAdapter(fragment: VisitsActivity) : FragmentStateAdapter(fragment) {
