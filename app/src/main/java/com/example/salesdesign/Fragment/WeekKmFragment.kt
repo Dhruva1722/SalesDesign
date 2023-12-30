@@ -40,28 +40,28 @@ class WeekKmFragment : Fragment() {
 
         val apiService = RetrofitClient.getClient().create(ApiService::class.java)
 
-        val call = apiService.getLocationInfo(userId!!)
-        call.enqueue(object : Callback<List<LocationInformation>> {
-            override fun onResponse(call: Call<List<LocationInformation>>, response: Response<List<LocationInformation>>) {
-                if (response.isSuccessful) {
-                    val locationInfoList = response.body()
-                    Log.d("--------", "Response:  $locationInfoList")
-                    locationInfoList?.let {
-                        val recyclerView: RecyclerView = view.findViewById(R.id.weekList)
-                        locationAdapter = LocationAdapter(emptyList())
-                        recyclerView.adapter = locationAdapter
-                    }
-                } else {
-                    Toast.makeText(requireContext(), "fail to get data ", Toast.LENGTH_SHORT).show()
-                }
-            }
-
-            override fun onFailure(call: Call<List<LocationInformation>>, t: Throwable) {
-                // Handle network failure
-                Log.e("-----", "onFailure: ${t.message}")
-                Toast.makeText(requireContext(), "Network Error", Toast.LENGTH_SHORT).show()
-            }
-        })
+//        val call = apiService.getLocationInfo(userId!!)
+//        call.enqueue(object : Callback<List<LocationResponse>> {
+//            override fun onResponse(call: Call<List<LocationResponse>>, response: Response<List<LocationResponse>>) {
+//                if (response.isSuccessful) {
+//                    val locationInfoList = response.body()
+//                    Log.d("--------", "Response:  $locationInfoList")
+//                    locationInfoList?.let {
+//                        val recyclerView: RecyclerView = view.findViewById(R.id.weekList)
+//                        locationAdapter = LocationAdapter(emptyList())
+//                        recyclerView.adapter = locationAdapter
+//                    }
+//                } else {
+//                    Toast.makeText(requireContext(), "fail to get data ", Toast.LENGTH_SHORT).show()
+//                }
+//            }
+//
+//            override fun onFailure(call: Call<List<LocationResponse>>, t: Throwable) {
+//                // Handle network failure
+//                Log.e("-----", "onFailure: ${t.message}")
+//                Toast.makeText(requireContext(), "Network Error", Toast.LENGTH_SHORT).show()
+//            }
+//        })
 
 
 

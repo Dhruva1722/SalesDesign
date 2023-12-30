@@ -1,6 +1,5 @@
 package com.example.salesdesign.Adapter
 
-import android.location.Location
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,6 +10,7 @@ import com.example.salesdesign.R
 
 class LocationAdapter(private val locationInfoList: List<LocationInformation>) :
     RecyclerView.Adapter<LocationAdapter.ViewHolder>() {
+
 
     class ViewHolder(locationItemView: View) : RecyclerView.ViewHolder(locationItemView) {
         val startPointNameTextView: TextView = locationItemView.findViewById(R.id.startPointNameTextView)
@@ -27,10 +27,16 @@ class LocationAdapter(private val locationInfoList: List<LocationInformation>) :
 
     override fun onBindViewHolder(locationHolder: ViewHolder, position: Int) {
         val locationInfo = locationInfoList[position]
-        locationHolder.startPointNameTextView.text = "Start Point: ${locationInfo.startPoint.startPointName}"
-        locationHolder.endPointNameTextView.text = "End Point: ${locationInfo.endPoint.endPointName}"
-        locationHolder.distanceTextView.text = "Distance: ${locationInfo.distance}"
-        locationHolder.timestampTextView.text = "Timestamp: ${locationInfo.timestamp}"
+
+        val startPoint = locationInfo.startPoint
+        val endPoint = locationInfo.endPoint
+
+        locationHolder.startPointNameTextView.text = "Start Point: ${startPoint?.startPointName ?: "N/A"}"
+        locationHolder.endPointNameTextView.text = "End Point: ${endPoint?.endPointName ?: "N/A"}"
+
+        // Check if distance and timestamp are not null before accessing their properties
+        locationHolder.distanceTextView.text = "Distance: ${locationInfo.distance?.toString() ?: "N/A"}"
+        locationHolder.timestampTextView.text = "Timestamp: ${locationInfo.timestamp?.toString() ?: "N/A"}"
     }
 
     override fun getItemCount(): Int {

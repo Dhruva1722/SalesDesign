@@ -10,7 +10,9 @@ import android.widget.RelativeLayout
 import com.example.salesdesign.Activity.CustomerActivity
 import com.example.salesdesign.Activity.ExpenseActivity
 import com.example.salesdesign.Activity.KMSActivity
+import com.example.salesdesign.Activity.ProfileActivity
 import com.example.salesdesign.Activity.ReadyStockActivity
+import com.example.salesdesign.Activity.SalesAnalayticsActivity
 import com.example.salesdesign.Activity.VisitsActivity
 import com.example.salesdesign.Map.MapsActivity
 import com.example.salesdesign.R
@@ -21,8 +23,10 @@ class DashboardFragment : Fragment() {
      private lateinit var kmsActivity: RelativeLayout
      private lateinit var visitsActivity: RelativeLayout
      private lateinit var mapsActivity: RelativeLayout
-    private lateinit var stockActivity: RelativeLayout
-    private lateinit var customerActivity: RelativeLayout
+     private lateinit var stockActivity: RelativeLayout
+     private lateinit var customerActivity: RelativeLayout
+     private lateinit var salesActivity: RelativeLayout
+     private lateinit var profileActivity: RelativeLayout
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -36,6 +40,8 @@ class DashboardFragment : Fragment() {
         customerActivity = view.findViewById(R.id.customerLY)
         mapsActivity = view.findViewById(R.id.mapLy)
         stockActivity = view.findViewById(R.id.readStockLY)
+        salesActivity = view.findViewById(R.id.salesLy)
+        profileActivity = view.findViewById(R.id.profileLY)
 
         expenseActivity.setOnClickListener {
             val intent = Intent(requireContext(),ExpenseActivity::class.java)
@@ -65,6 +71,17 @@ class DashboardFragment : Fragment() {
             val intent = Intent(requireContext(),ReadyStockActivity::class.java)
             startActivity(intent)
         }
+
+        salesActivity.setOnClickListener {
+            val intent = Intent(requireContext(), SalesAnalayticsActivity::class.java)
+            startActivity(intent)
+        }
+
+        profileActivity.setOnClickListener {
+            val intent = Intent(requireContext(), ProfileActivity::class.java)
+            startActivity(intent)
+        }
+
         return view
     }
 

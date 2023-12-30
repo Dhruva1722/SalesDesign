@@ -31,7 +31,7 @@ class CustomerAdapter (private var customerList: List<Customer>) :
     override fun onBindViewHolder(holder: CustomerViewHolder, position: Int) {
         val currentCustomer = customerList[position]
         holder.nameTextView.text = currentCustomer.customerName
-        holder.phoneTextView.text = currentCustomer.customerPhone.toString()
+        holder.phoneTextView.text = currentCustomer.customerPhone
         holder.locationTextView.text = currentCustomer.customerAddress
         holder.industryTypeTextView.text = currentCustomer.industryType
         holder.informationTextView.text = currentCustomer.reason

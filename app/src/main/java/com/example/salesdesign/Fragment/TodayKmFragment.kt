@@ -2,7 +2,6 @@ package com.example.salesdesign.Fragment
 
 import android.content.Context
 import android.content.SharedPreferences
-import android.location.Location
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -20,7 +19,6 @@ import com.google.gson.annotations.SerializedName
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.util.Date
 
 class TodayKmFragment : Fragment() {
 
@@ -34,7 +32,8 @@ class TodayKmFragment : Fragment() {
        val view = inflater.inflate(R.layout.fragment_today_km, container, false)
 
 
-        val recyclerView: RecyclerView = view.findViewById(R.id.todayList)
+//        val recyclerView: RecyclerView = view.findViewById(R.id.todayList)
+//        recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
         sharedPreferences = requireActivity().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
         userId = sharedPreferences.getString("User", null) ?: ""
@@ -42,27 +41,27 @@ class TodayKmFragment : Fragment() {
 
         val apiService = RetrofitClient.getClient().create(ApiService::class.java)
 
-        val call = apiService.getLocationInfo(userId!!)
-        call.enqueue(object : Callback<List<LocationInformation>> {
-            override fun onResponse(call: Call<List<LocationInformation>>, response: Response<List<LocationInformation>>) {
-                if (response.isSuccessful) {
-                    val locationInfoList = response.body()
-
-                    // Set up RecyclerView adapter using the locationAdapter field
-                    locationInfoList?.let {
-                        locationAdapter = LocationAdapter(it)
-                        recyclerView.adapter = locationAdapter
-                    }
-                } else {
-                    Toast.makeText(requireContext(),"No Data available" ,  Toast.LENGTH_SHORT).show()
-                }
-            }
-
-            override fun onFailure(call: Call<List<LocationInformation>>, t: Throwable) {
-                Toast.makeText(requireContext(),"Network Error" ,  Toast.LENGTH_SHORT).show()
-                Log.d("-----", "onFailure: $t")
-            }
-        })
+//        val call = apiService.getLocationInfo(userId!!)
+//        call.enqueue(object : Callback<LocationResponse> {
+//            override fun onResponse(call: Call<LocationResponse>, response: Response<LocationResponse>) {
+//                if (response.isSuccessful) {
+//                    val locationResponse = response.body()
+//                    locationResponse?.let {
+//                        // Assuming LocationAdapter accepts a List<LocationInformation>
+//                        val locationInfoList = listOf(it.locationInfo)
+//                        locationAdapter = LocationAdapter(locationInfoList)
+//                        recyclerView.adapter = locationAdapter
+//                    }
+//                } else {
+//                    Toast.makeText(requireContext(), "No Data available", Toast.LENGTH_SHORT).show()
+//                }
+//            }
+//
+//            override fun onFailure(call: Call<LocationResponse>, t: Throwable) {
+//                Toast.makeText(requireContext(), "Network Error", Toast.LENGTH_SHORT).show()
+//                Log.d("-----", "onFailure: $t")
+//            }
+//        })
 
 
         return view
@@ -71,6 +70,12 @@ class TodayKmFragment : Fragment() {
 }
 
 
+
+
+data class LocationResponse(
+    @SerializedName("Location_info")
+    val locationInfo: LocationInformation
+)
 
 data class LocationInformation(
     val startPoint: StartPoint,

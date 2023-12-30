@@ -6,7 +6,6 @@
     tools:context=".Fragment.DashboardFragment"
     android:background="#e3e8ec">
 
-
         <TextView
             android:id="@+id/dashboardTxt"
             android:layout_width="wrap_content"
@@ -26,13 +25,10 @@
         android:padding="10dp"
         android:layout_below="@id/dashboardTxt">
 
-
-
     <RelativeLayout
             android:id="@+id/expenseLy"
             android:layout_width="160dp"
             android:layout_height="120dp"
-            android:layout_marginStart="5dp"
             android:layout_marginTop="10dp"
             android:background="@drawable/rectangle_card"
             android:backgroundTint="@color/white"
@@ -96,7 +92,6 @@
             android:layout_width="160dp"
             android:layout_height="120dp"
             android:layout_below="@id/expenseLy"
-            android:layout_marginStart="5dp"
             android:layout_marginTop="10dp"
             android:background="@drawable/rectangle_card2"
             android:backgroundTint="@color/white"
@@ -160,7 +155,6 @@
             android:layout_width="160dp"
             android:layout_height="120dp"
             android:layout_below="@id/visitingLY"
-            android:layout_marginStart="5dp"
             android:layout_marginTop="10dp"
             android:background="@drawable/rectangle_card"
             android:backgroundTint="@color/white"
@@ -223,12 +217,10 @@
 
         <RelativeLayout
             android:id="@+id/mapLy"
-            android:layout_width="320dp"
+            android:layout_width="160dp"
             android:layout_height="120dp"
             android:layout_below="@id/salesLy"
-            android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
-            android:gravity="center_vertical"
             android:layout_marginTop="10dp"
             android:background="@drawable/rectangle_card1"
             android:backgroundTint="@color/white"
@@ -237,9 +229,9 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
+                android:layout_alignParentBottom="true"
                 android:layout_marginStart="15dp"
-                android:layout_marginBottom="5dp"
+                android:layout_marginBottom="10dp"
                 android:text="Map Direction"
                 android:textColor="#1B1B1B"
                 android:textSize="20sp"
@@ -249,8 +241,40 @@
             <ImageView
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:layout_marginStart="40dp"
+                android:layout_marginStart="10dp"
                 android:src="@drawable/googlemaps" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/profileLY"
+            android:layout_width="160dp"
+            android:layout_height="120dp"
+            android:layout_below="@id/readStockLY"
+            android:layout_marginTop="10dp"
+            android:layout_toRightOf="@id/mapLy"
+            android:backgroundTint="@color/white"
+            android:background="@drawable/rectangle_card2"
+            android:padding="10dp">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="15dp"
+                android:layout_marginBottom="10dp"
+                android:text="Profile"
+                android:textColor="#1B1B1B"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="10dp"
+                android:src="@drawable/user" />
 
         </RelativeLayout>
 

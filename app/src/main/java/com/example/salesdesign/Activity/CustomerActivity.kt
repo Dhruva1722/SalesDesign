@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.EditText
 import android.widget.ImageView
+import android.widget.SearchView
 import android.widget.Toast
 import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -28,22 +29,18 @@ class CustomerActivity : AppCompatActivity() {
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var customerAdapter: CustomerAdapter
+    private lateinit var searchView: SearchView
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_customer)
 
-
         apiService = RetrofitClient.getClient().create(ApiService::class.java)
 
 
         recyclerView = findViewById(R.id.customerList)
-
-        recyclerView.layoutManager = LinearLayoutManager(this)
-        customerAdapter = CustomerAdapter(emptyList()) // Pass your customer data here
-        recyclerView.adapter = customerAdapter
-
+        recyclerView.layoutManager = LinearLayoutManager(this@CustomerActivity)
         fetchDataFromApi()
 
 
@@ -52,6 +49,20 @@ class CustomerActivity : AppCompatActivity() {
             val intent = Intent(this@CustomerActivity, MainActivity::class.java)
             startActivity(intent)
         }
+
+
+        searchView = findViewById(R.id.idSV)
+
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                customerAdapter.filterData(newText.orEmpty())
+                return true
+            }
+        })
 
 
 
@@ -65,16 +76,19 @@ class CustomerActivity : AppCompatActivity() {
                 if (response.isSuccessful) {
                     val customers = response.body()
                     customers?.let {
-                        customerAdapter = CustomerAdapter(emptyList())
+                        customerAdapter = CustomerAdapter(it)
                         recyclerView.adapter = customerAdapter
+
+                        customerAdapter.notifyDataSetChanged()
                     }
                 }
             }
 
             override fun onFailure(call: Call<List<Customer>>, t: Throwable) {
-                Toast.makeText(this@CustomerActivity,"No Data available" ,  Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@CustomerActivity, "No Data available", Toast.LENGTH_SHORT).show()
             }
         })
+
     }
 
 

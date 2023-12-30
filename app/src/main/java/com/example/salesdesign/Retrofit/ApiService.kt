@@ -6,6 +6,7 @@ import com.example.salesdesign.Fragment.AttendanceData
 import com.example.salesdesign.Fragment.Customer
 import com.example.salesdesign.Fragment.Event
 import com.example.salesdesign.Fragment.LocationInformation
+import com.example.salesdesign.Fragment.LocationResponse
 import com.example.salesdesign.Fragment.MenuData
 import com.example.salesdesign.Fragment.PurchaseTodayFood
 import com.example.salesdesign.Fragment.PurchaseTomorrowFood
@@ -70,6 +71,8 @@ interface ApiService  {
 //    @GET("/location/{id}")
 //    fun getLocation(@Path("id") userId: String): Call<LocationResponse>
 
-    @GET("/location/{id}")
-    fun getLocationInfo(@Query("userId") userId: String): Call<List<LocationInformation>>
+    @GET("location/{id}")
+    fun getLocationInfo(@Path("id") userId: String): Call<LocationResponse>
+
+
 }

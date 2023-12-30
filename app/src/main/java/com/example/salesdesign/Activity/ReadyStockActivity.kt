@@ -63,18 +63,17 @@ class ReadyStockActivity : AppCompatActivity() {
                     val data: List<StockResponse>? = response.body()
 
                     data?.let {
-                        // Use the retrieved data to populate the RecyclerView
                          adapter = CustomizedExpandableListAdapter(it)
                         recyclerView.layoutManager = LinearLayoutManager(this@ReadyStockActivity)
                         recyclerView.adapter = adapter
                     }
                 } else {
-                    // Handle unsuccessful response
+                    Toast.makeText(this@ReadyStockActivity, "No Data Available", Toast.LENGTH_SHORT).show()
                 }
             }
 
             override fun onFailure(call: Call<List<StockResponse>>, t: Throwable) {
-                // Handle network failure
+                Toast.makeText(this@ReadyStockActivity, "Pls Check your Network Connection", Toast.LENGTH_SHORT).show()
             }
         })
     }
