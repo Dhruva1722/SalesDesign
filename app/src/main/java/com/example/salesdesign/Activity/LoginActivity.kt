@@ -9,6 +9,7 @@ import android.util.Patterns
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
+import com.example.salesdesign.Fragment.AttendanceFragment
 import com.example.salesdesign.MainActivity
 import com.example.salesdesign.R
 import com.example.salesdesign.Retrofit.ApiService
@@ -49,16 +50,12 @@ class LoginActivity : AppCompatActivity() {
         emailEditText = findViewById(R.id.loginEmailID)
         passwordEditText = findViewById(R.id.loginPasswordID)
         loginButton = findViewById(R.id.loginBtnID)
-//        newUserTextView = findViewById(R.id.newUserID)
         passResetBtn = findViewById(R.id.forgetPAsswordID)
 
 
         apiService = RetrofitClient.getClient().create(ApiService::class.java)
 
-//        newUserTextView.setOnClickListener {
-//            val intent = Intent(this, RegistrationActivity::class.java)
-//            startActivity(intent)
-//        }
+
 
         loginButton.setOnClickListener {
             val email = emailEditText.text.toString()
@@ -91,15 +88,13 @@ class LoginActivity : AppCompatActivity() {
                         if (loginResponse != null) {
                             val userId = loginResponse.userId // Get the user ID
                             saveUserId(userId)
-                            saveUserEmail(email
-                            )
+                            saveUserEmail(email)
                             println("User ID : "+ userId)
                             Log.d("=============", "user id ========" + userId)
 
                             setLoggedIn(true)
                             Toast.makeText(applicationContext,"login Succeccful", Toast.LENGTH_SHORT).show()
-                            // Navigate to the main activity
-                            val intent = Intent(this@LoginActivity, MainActivity::class.java)
+                            val intent = Intent(this@LoginActivity, AttendanceActivity::class.java)
                             startActivity(intent)
                             finish()
                         } else {

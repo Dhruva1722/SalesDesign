@@ -60,13 +60,12 @@
 
     </RelativeLayout>
 
-
-
-    <ListView
-        android:id="@+id/tripDetails"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/tripDetailList"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/toolBarLy"/>
+        android:layout_below="@id/toolBarLy"
+        android:layout_margin="10dp"/>
 
 
 

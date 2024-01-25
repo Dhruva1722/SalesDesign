@@ -7,7 +7,6 @@
     tools:context=".Activity.ProfileActivity"
     android:background="#e3e8ec">
 
-
     <RelativeLayout
         android:id="@+id/toolBarLy"
         android:layout_width="match_parent"
@@ -102,7 +101,6 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="5dp"/>
 
-
         <ImageView
             android:id="@+id/addAddress"
             android:layout_width="20dp"
@@ -113,10 +111,7 @@
             android:src="@drawable/baseline_edit_24"
             android:layout_toRightOf="@id/userAddress"/>
 
-
-
     </RelativeLayout>
-
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -142,7 +137,6 @@
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
             android:layout_marginTop="10dp"/>
-
 
         <TextView
             android:id="@+id/bank_Details"
@@ -200,6 +194,23 @@
             android:layout_height="wrap_content"
             android:text="Company Properties"
             android:layout_below="@id/leave_details"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:padding="10dp"
+            android:background="@drawable/rectangle_card"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginTop="10dp" />
+
+
+        <TextView
+            android:id="@+id/logoutBtn"
+            android:drawableEnd="@drawable/baseline_arrow_forward_ios_24"
+            android:drawablePadding="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Logout"
+            android:layout_below="@id/company_property"
             android:textSize="20sp"
             android:textStyle="bold"
             android:padding="10dp"

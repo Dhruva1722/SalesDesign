@@ -1,8 +1,11 @@
 package com.example.salesdesign.Retrofit
 
+import com.example.salesdesign.Activity.AttendanceData
+import com.example.salesdesign.Activity.LeaveRequest
+import com.example.salesdesign.Activity.LeaveResponse
 import com.example.salesdesign.Activity.LoginResponse
 import com.example.salesdesign.Activity.StockResponse
-import com.example.salesdesign.Fragment.AttendanceData
+import com.example.salesdesign.Activity.TripInfo
 import com.example.salesdesign.Fragment.Customer
 import com.example.salesdesign.Fragment.Event
 import com.example.salesdesign.Fragment.LocationInformation
@@ -13,6 +16,7 @@ import com.example.salesdesign.Fragment.PurchaseTomorrowFood
 import com.google.gson.JsonObject
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
+import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Response
 import retrofit2.http.Body
@@ -54,6 +58,11 @@ interface ApiService  {
         @Part image: MultipartBody.Part // Add RequestBody for the name
     ): Call<Void>
 
+    @POST("/leave/{id}")
+    fun postLeaveRequest(
+        @Path("id") userId: String,
+        @Body leaveRequest: LeaveRequest
+    ): Call<ResponseBody>
 
 
   // get data
@@ -68,11 +77,11 @@ interface ApiService  {
     @GET("/event")
     fun getEvents(): Call<List<Event>>
 
-//    @GET("/location/{id}")
-//    fun getLocation(@Path("id") userId: String): Call<LocationResponse>
+    @GET("/leave/{id}")
+    fun getLeaveApplications(@Path("id") userId: String): Call<LeaveResponse>
 
-    @GET("location/{id}")
-    fun getLocationInfo(@Path("id") userId: String): Call<LocationResponse>
+    @GET("/location/{Id}")
+    fun getTripData(@Path("Id") userId: String): Call<TripInfo>
 
 
 }

@@ -39,7 +39,7 @@ class ReadyStockActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        expandableListViewExample = findViewById(R.id.expandableListViewSample)
+//        expandableListViewExample = findViewById(R.id.expandableListViewSample)
         searchView = findViewById(R.id.idSV)
 
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
@@ -52,7 +52,6 @@ class ReadyStockActivity : AppCompatActivity() {
                 return true
             }
         })
-
 
         val recyclerView: RecyclerView = findViewById(R.id.expandableListViewSample)
         val apiService = RetrofitClient.getClient().create(ApiService::class.java)
@@ -71,7 +70,6 @@ class ReadyStockActivity : AppCompatActivity() {
                     Toast.makeText(this@ReadyStockActivity, "No Data Available", Toast.LENGTH_SHORT).show()
                 }
             }
-
             override fun onFailure(call: Call<List<StockResponse>>, t: Throwable) {
                 Toast.makeText(this@ReadyStockActivity, "Pls Check your Network Connection", Toast.LENGTH_SHORT).show()
             }

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SplashScreen"
+    android:background="#e3e8ec">
+
+<!--    <ImageView-->
+<!--        android:id="@+id/salesImg"-->
+<!--        android:layout_width="300dp"-->
+<!--        android:layout_height="200dp"-->
+<!--        android:src="@drawable/sales" />-->
+
+    <ImageView
+        android:id="@+id/logoImg"
+        android:layout_width="200dp"
+        android:layout_height="150dp"
+        android:layout_centerInParent="true"
+        android:src="@drawable/multispan_logo"
+        app:tint="#2E2E2E" />
+
+    <TextView
+        android:id="@+id/poweredByTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="powered by"
+        android:textAllCaps="true"
+        android:layout_below="@id/logoImg"
+        app:tint="#2E2E2E"
+        android:textSize="18sp"
+        android:layout_centerHorizontal="true"/>
+
+    <TextView
+        android:id="@+id/multispantxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="multispan"
+        android:textAllCaps="true"
+        android:textStyle="bold"
+        android:layout_below="@id/poweredByTxt"
+        app:tint="#2E2E2E"
+        android:textSize="30sp"
+        android:layout_centerHorizontal="true"/>
+
+</RelativeLayout>

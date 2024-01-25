@@ -1,23 +1,20 @@
-package com.example.salesdesign.Fragment
+package com.example.salesdesign.Activity
 
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
-import com.example.salesdesign.Activity.AttendanceData
+import androidx.core.content.ContentProviderCompat.requireContext
 import com.example.salesdesign.MainActivity
 import com.example.salesdesign.R
 import com.example.salesdesign.Retrofit.ApiService
 import com.example.salesdesign.Retrofit.RetrofitClient
-import com.google.android.material.datepicker.MaterialDatePicker
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -25,8 +22,8 @@ import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
 
+class AttendanceActivity : AppCompatActivity() {
 
-class AttendanceFragment : Fragment() {
 
     private lateinit var dateTimeTextView: TextView
     private lateinit var daymonthTextView: TextView
@@ -49,72 +46,69 @@ class AttendanceFragment : Fragment() {
 
     val apiService = RetrofitClient.getClient().create(ApiService::class.java)
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        val view = inflater.inflate(R.layout.fragment_attendance, container, false)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_attendance)
 
 
-//        sharedPreferences = requireActivity().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
-//        userId = sharedPreferences.getString("User", null) ?: ""
-//        isPunchedIn = sharedPreferences.getBoolean("isPunchedIn", false)
-//
-//        val lastAttendanceDate = sharedPreferences.getString(LAST_ATTENDANCE_DATE_KEY, "")
-//
-//        dateTimeTextView = view.findViewById(R.id.dateTime)
-//        daymonthTextView = view.findViewById(R.id.dayMonth)
-//        userStatusTime = view.findViewById(R.id.userTimeOfAttendence)
-//        presentBtn = view.findViewById(R.id.presentBtn)
-//        absentBtn = view.findViewById(R.id.absentBtn)
-//        username = view.findViewById(R.id.Username)
-//
-//
-//
-//        val userEmail = sharedPreferences.getString("userEmail", "")
-//        val parts = userEmail?.split("@")
-//        if (parts?.size == 2) {
-//            val name = parts[0]
-//            username.text = "Hello, $name!!"
-//        }
-//
-//        onsiteIcon = view.findViewById(R.id.onsiteIcon)
-//        inofficeIcon = view.findViewById(R.id.inofficeIcon)
-//
-//        val currentDateTime = SimpleDateFormat("hh:mm a", Locale.getDefault()).format(Date())
-//        dateTimeTextView.text = currentDateTime
-//
-//
-//        val currentDayMonth = SimpleDateFormat("EEEE d,MMM", Locale.getDefault()).format(Date())
-//        daymonthTextView.text = currentDayMonth
-//
-//        val savedStatus = sharedPreferences.getString(ATTENDANCE_STATUS_KEY, "")
-//        if (savedStatus == "On-Site") {
-//            updateUI(savedStatus)
-//        } else {
-//            updateUI("In-Office")
-//            updateUI(savedStatus ?: "")
-//        }
-//
-//        isDateChanged = hasDateChanged(lastAttendanceDate)
-//
-//        if (isPunchedIn) {
-//            if (isDateChanged) {
-//                presentBtn.isEnabled = true
-//                absentBtn.isEnabled = true
-//            } else {
-//                presentBtn.isEnabled = false
-//                absentBtn.isEnabled = false
-//            }
-//        }
-//
-//        presentBtn.setOnClickListener {
-//            punchIn()
-//        }
-//        absentBtn.setOnClickListener {
-//            punchOut()
-//        }
-        return view
+        sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+        userId = sharedPreferences.getString("User", null) ?: ""
+        isPunchedIn = sharedPreferences.getBoolean("isPunchedIn", false)
+
+        val lastAttendanceDate = sharedPreferences.getString(LAST_ATTENDANCE_DATE_KEY, "")
+
+        dateTimeTextView = findViewById(R.id.dateTime)
+        daymonthTextView = findViewById(R.id.dayMonth)
+        userStatusTime = findViewById(R.id.userTimeOfAttendence)
+        presentBtn = findViewById(R.id.presentBtn)
+        absentBtn = findViewById(R.id.absentBtn)
+        username = findViewById(R.id.Username)
+
+
+
+        val userEmail = sharedPreferences.getString("userEmail", "")
+        val parts = userEmail?.split("@")
+        if (parts?.size == 2) {
+            val name = parts[0]
+            username.text = "Hello, $name!!"
+        }
+
+        onsiteIcon = findViewById(R.id.onsiteIcon)
+        inofficeIcon = findViewById(R.id.inofficeIcon)
+
+        val currentDateTime = SimpleDateFormat("hh:mm a", Locale.getDefault()).format(Date())
+        dateTimeTextView.text = currentDateTime
+
+
+        val currentDayMonth = SimpleDateFormat("EEEE d,MMM", Locale.getDefault()).format(Date())
+        daymonthTextView.text = currentDayMonth
+
+        val savedStatus = sharedPreferences.getString(ATTENDANCE_STATUS_KEY, "")
+        if (savedStatus == "On-Site") {
+            updateUI(savedStatus)
+        } else {
+            updateUI("In-Office")
+            updateUI(savedStatus ?: "")
+        }
+
+        isDateChanged = hasDateChanged(lastAttendanceDate)
+
+        if (isPunchedIn) {
+            if (isDateChanged) {
+                presentBtn.isEnabled = true
+                absentBtn.isEnabled = true
+            } else {
+                presentBtn.isEnabled = false
+                absentBtn.isEnabled = false
+            }
+        }
+
+        presentBtn.setOnClickListener {
+            punchIn()
+        }
+        absentBtn.setOnClickListener {
+            punchOut()
+        }
     }
 
     private fun hasDateChanged(lastAttendanceDate: String?): Boolean {
@@ -134,15 +128,15 @@ class AttendanceFragment : Fragment() {
         call.enqueue(object : Callback<Void> {
             override fun onResponse(call: Call<Void>, response: Response<Void>) {
                 if (response.isSuccessful) {
-                    Toast.makeText(requireContext(), "Punched in successfully", Toast.LENGTH_SHORT).show()
-                    val intent = Intent(requireContext(), MainActivity::class.java)
+                    Toast.makeText(this@AttendanceActivity, "Punched in successfully", Toast.LENGTH_SHORT).show()
+                    val intent = Intent(this@AttendanceActivity, MainActivity::class.java)
                     startActivity(intent)
                 } else {
-                    Toast.makeText(requireContext(), "Failed to punch in", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@AttendanceActivity, "Failed to punch in", Toast.LENGTH_SHORT).show()
                 }
             }
             override fun onFailure(call: Call<Void>, t: Throwable) {
-                Toast.makeText(requireContext(), "Network error", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@AttendanceActivity, "Network error", Toast.LENGTH_SHORT).show()
             }
         })
         saveAttendanceStatus("On-Site")
@@ -162,14 +156,14 @@ class AttendanceFragment : Fragment() {
         call.enqueue(object : Callback<Void> {
             override fun onResponse(call: Call<Void>, response: Response<Void>) {
                 if (response.isSuccessful) {
-                    Toast.makeText(requireContext(), "Punched out successfully", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@AttendanceActivity, "Punched out successfully", Toast.LENGTH_SHORT).show()
                 } else {
-                    Toast.makeText(requireContext(), "Failed to punch out", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@AttendanceActivity, "Failed to punch out", Toast.LENGTH_SHORT).show()
                 }
             }
 
             override fun onFailure(call: Call<Void>, t: Throwable) {
-                Toast.makeText(requireContext(), "Network error", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@AttendanceActivity, "Network error", Toast.LENGTH_SHORT).show()
             }
         })
         saveAttendanceStatus("In-Office")
@@ -209,7 +203,7 @@ class AttendanceFragment : Fragment() {
 
 }
 
-//data class AttendanceData(
-//    val userId: String,
-//    val isPunchIn: Boolean
-//)
+data class AttendanceData(
+    val userId: String,
+    val isPunchIn: Boolean
+)

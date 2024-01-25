@@ -45,7 +45,6 @@
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
-
             <ImageView
                 android:layout_width="30dp"
                 android:layout_height="30dp"
@@ -53,7 +52,6 @@
                 android:src="@drawable/medical" />
 
         </RelativeLayout>
-
 
         <RelativeLayout
             android:id="@+id/kmsLY"
@@ -66,7 +64,6 @@
             android:backgroundTint="@color/white"
             android:padding="10dp">
 
-
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -77,7 +74,6 @@
                 android:textColor="#1B1B1B"
                 android:textSize="20sp"
                 android:textStyle="bold" />
-
 
             <ImageView
                 android:layout_width="30dp"
@@ -96,7 +92,6 @@
             android:background="@drawable/rectangle_card2"
             android:backgroundTint="@color/white"
             android:padding="10dp">
-
 
             <TextView
                 android:layout_width="wrap_content"
@@ -129,7 +124,6 @@
             android:backgroundTint="@color/white"
             android:padding="10dp">
 
-
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -159,7 +153,6 @@
             android:background="@drawable/rectangle_card"
             android:backgroundTint="@color/white"
             android:padding="10dp">
-
 
             <TextView
                 android:layout_width="wrap_content"
@@ -205,7 +198,6 @@
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
-
             <ImageView
                 android:layout_width="30dp"
                 android:layout_height="30dp"
@@ -213,7 +205,6 @@
                 android:src="@drawable/box" />
 
         </RelativeLayout>
-
 
         <RelativeLayout
             android:id="@+id/mapLy"
@@ -236,7 +227,6 @@
                 android:textColor="#1B1B1B"
                 android:textSize="20sp"
                 android:textStyle="bold" />
-
 
             <ImageView
                 android:layout_width="30dp"

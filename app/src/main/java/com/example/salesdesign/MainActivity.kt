@@ -27,14 +27,11 @@ class MainActivity : AppCompatActivity() , BottomNavigationView.OnNavigationItem
         loadFragment(DashboardFragment())
     }
 
-
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         var fragment: Fragment? = null
         if (item.itemId == R.id.dashboard) {
             fragment = DashboardFragment()
-        } else if (item.itemId == R.id.attendance) {
-            fragment = AttendanceFragment()
-        } else if (item.itemId == R.id.canteen) {
+        }  else if (item.itemId == R.id.canteen) {
             fragment = CanteenFragment()
         } else if (item.itemId == R.id.event) {
             fragment = EventFragment()
@@ -47,6 +44,8 @@ class MainActivity : AppCompatActivity() , BottomNavigationView.OnNavigationItem
         supportFragmentManager.beginTransaction().replace(R.id.relativelayout, fragment!!).commit()
     }
 }
-
+//else if (item.itemId == R.id.attendance) {
+//    fragment = AttendanceFragment()
+//}
 
 

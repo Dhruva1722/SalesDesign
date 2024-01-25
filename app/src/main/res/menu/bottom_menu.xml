@@ -7,10 +7,9 @@
         android:icon="@drawable/baseline_dashboard_24"
         android:title="Dashboard"/>
 
-
-    <item android:id="@+id/attendance"
-        android:icon="@drawable/baseline_edit_calendar_24"
-        android:title="Attendance"/>
+<!--    <item android:id="@+id/attendance"-->
+<!--        android:icon="@drawable/baseline_edit_calendar_24"-->
+<!--        android:title="Attendance"/>-->
 
     <item android:id="@+id/canteen"
         android:icon="@drawable/baseline_fastfood_24"

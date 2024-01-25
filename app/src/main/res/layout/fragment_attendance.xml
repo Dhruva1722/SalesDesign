@@ -21,7 +21,6 @@
         android:background="#ffff"
         android:elevation="10dp">
 
-
     <ImageView
         android:id="@+id/onsiteIcon"
         android:layout_width="140dp"
