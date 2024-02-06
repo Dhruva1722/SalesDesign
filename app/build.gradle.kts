@@ -55,6 +55,8 @@ dependencies {
     implementation ("com.squareup.retrofit2:retrofit:2.9.0")
     implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
 
+//    implementation ("com.github.dhaval2404:imagepicker-support:1.7.1")
+
 // expandable tag
     implementation ("com.ms-square:expandableTextView:0.1.4")
 

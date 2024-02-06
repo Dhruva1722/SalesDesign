@@ -1,5 +1,6 @@
 package com.example.salesdesign.Activity
 
+import android.app.DatePickerDialog
 import android.content.Context
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
@@ -7,6 +8,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.ArrayAdapter
 import android.widget.Button
+import android.widget.EditText
 import android.widget.ListView
 import android.widget.TextView
 import android.widget.Toast
@@ -23,6 +25,7 @@ import retrofit2.Callback
 import retrofit2.Response
 import java.text.ParseException
 import java.text.SimpleDateFormat
+import java.util.Calendar
 import java.util.Date
 import java.util.Locale
 import java.util.TimeZone
@@ -61,14 +64,50 @@ class LeaveStatus : AppCompatActivity() {
 
             val view = layoutInflater.inflate(R.layout.leave_item, null)
 
-            val textStartDate = view.findViewById<TextInputLayout>(R.id.textStartDate)
-            val textEndDate = view.findViewById<TextInputLayout>(R.id.textEndDate)
+            val textStartDate = view.findViewById<EditText>(R.id.textStartDate)
+            val textEndDate = view.findViewById<EditText>(R.id.textEndDate)
             val applyBtn = view.findViewById<Button>(R.id.applyBtn)
+
+            textStartDate.setOnClickListener {
+                val c = Calendar.getInstance()
+
+                val year = c.get(Calendar.YEAR)
+                val month = c.get(Calendar.MONTH)
+                val day = c.get(Calendar.DAY_OF_MONTH)
+
+                val datePickerDialog = DatePickerDialog(
+                    this, DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
+                        // Format the date as "yyyy-MM-dd"
+                        val formattedDate = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+                            .format(Date(year - 1900, monthOfYear, dayOfMonth))
+                        textStartDate.setText(formattedDate)
+                    }, year, month, day
+                )
+                datePickerDialog.show()
+            }
+
+            textEndDate.setOnClickListener {
+                val c = Calendar.getInstance()
+
+                val year = c.get(Calendar.YEAR)
+                val month = c.get(Calendar.MONTH)
+                val day = c.get(Calendar.DAY_OF_MONTH)
+
+                val datePickerDialog = DatePickerDialog(
+                   this, DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
+                        // Format the date as "yyyy-MM-dd"
+                        val formattedDate = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+                            .format(Date(year - 1900, monthOfYear, dayOfMonth))
+                        textEndDate.setText(formattedDate)
+                    }, year, month, day
+                )
+                datePickerDialog.show()
+            }
 
             applyBtn.setOnClickListener {
 
-                val startDateStr = textStartDate.editText!!.text.toString()
-                val endDateStr = textEndDate.editText!!.text.toString()
+                val startDateStr = textStartDate.text.toString()
+                val endDateStr = textEndDate.text.toString()
 
                 Log.d("LeaveApplicationDialog", "startDateStr: $startDateStr")
                 Log.d("LeaveApplicationDialog", "endDateStr: $endDateStr")

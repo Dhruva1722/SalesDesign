@@ -32,8 +32,6 @@ import java.io.FileOutputStream
 class ExpenseActivity : AppCompatActivity() {
 
     private lateinit var backbtn : ImageView
-
-
     private lateinit var savebtn: Button
 
     private lateinit var radioGroup: RadioGroup
@@ -56,7 +54,7 @@ class ExpenseActivity : AppCompatActivity() {
 
 
         radioGroup = findViewById(R.id.idRadioGroup)
-//        uploadButton = findViewById(R.id.uploadButton)
+        uploadButton = findViewById(R.id.imagePicker)
         savebtn = findViewById(R.id.saveToDatabase)
 
         busRadio = findViewById(R.id.idBtnBusRadio)
@@ -96,6 +94,7 @@ class ExpenseActivity : AppCompatActivity() {
             val waterRequestBody = RequestBody.create(null, Water)
             val hotelRequestBody = RequestBody.create(null, Hotel)
             val otherTransportRequestBody = RequestBody.create(null, Other_Transport)
+
 
             // Assuming this is inside your activity or fragment
             val imageResourceId = R.drawable.amico
@@ -141,8 +140,6 @@ class ExpenseActivity : AppCompatActivity() {
                 }
             })
         }
-
-
 
 
 

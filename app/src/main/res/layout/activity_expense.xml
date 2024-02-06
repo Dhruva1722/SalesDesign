@@ -246,15 +246,15 @@
         </ScrollView>
 
         <LinearLayout
-            android:layout_width="250dp"
-            android:layout_height="80dp"
+            android:id="@+id/cameraLy"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
             android:layout_below="@id/inputLy"
-            android:layout_centerHorizontal="true"
             android:layout_marginTop="15dp"
+            android:layout_toLeftOf="@id/uploadTxt"
             android:gravity="center_horizontal"
             android:elevation="10dp"
-            android:background="@drawable/rectangle_card"
-            android:backgroundTint="@color/white">
+            android:background="@drawable/circle">
 
             <ImageView
                 android:id="@+id/imagePicker"
@@ -263,18 +263,19 @@
                 android:layout_gravity="center"
                 android:src="@drawable/baseline_photo_camera_24"/>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Upload Receipts/Bills"
-                android:textColor="@color/black"
-                android:textSize="18sp"
-                android:layout_marginStart="10dp"
-                android:layout_gravity="center"/>
-
-
         </LinearLayout>
 
+        <TextView
+            android:id="@+id/uploadTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Upload Receipts/Bills"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/inputLy"
+            android:layout_marginTop="30dp"
+            android:layout_marginStart="10dp" />
 
     </RelativeLayout>
 
@@ -284,6 +285,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Save"
+        android:textColor="@color/white"
         android:elevation="10dp"
         android:layout_below="@id/transportationLY"
         android:layout_centerHorizontal="true"

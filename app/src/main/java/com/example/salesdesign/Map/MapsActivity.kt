@@ -1,22 +1,25 @@
 package com.example.salesdesign.Map
 
-import android.Manifest
-import android.content.Intent
-import android.content.pm.PackageManager
+import android.annotation.SuppressLint
 import android.graphics.Color
 import android.location.Address
 import android.location.Geocoder
-import android.location.Location
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.SystemClock
 import android.util.Log
+import android.view.View
+import android.widget.ArrayAdapter
+import android.widget.AutoCompleteTextView
 import android.widget.Button
-import android.widget.EditText
 import android.widget.ImageView
+import android.widget.LinearLayout
+import android.widget.RelativeLayout
+import android.widget.TextView
 import android.widget.Toast
-import androidx.core.app.ActivityCompat
-import com.example.salesdesign.MainActivity
 import com.example.salesdesign.R
+import com.example.salesdesign.databinding.ActivityMapsBinding
+
 
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -24,38 +27,38 @@ import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
-import com.example.salesdesign.databinding.ActivityMapsBinding
 import com.google.android.gms.maps.MapsInitializer
 import com.google.android.gms.maps.model.BitmapDescriptor
 import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLngBounds
-import com.google.android.gms.maps.model.Polyline
 import com.google.android.gms.maps.model.PolylineOptions
-import okhttp3.Callback
 import okhttp3.Call
+import okhttp3.Callback
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.Response
-import java.io.IOException
 import org.json.JSONException
 import org.json.JSONObject
-
-
+import java.io.IOException
+import java.util.Locale
 
 class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
     private lateinit var map: GoogleMap
+    private lateinit var locationProvider: LocationProvider
+
     private lateinit var binding: ActivityMapsBinding
-    private lateinit var originEdt : EditText
-    private lateinit var destinationEdt : EditText
-    private lateinit var geocoder: Geocoder
-    private lateinit var locationHelper: LocationHelper
-    private lateinit var backbtn : ImageView
+
+    private val presenter = MapPresenter(this)
+
+    private lateinit var originEdt: AutoCompleteTextView
+    private lateinit var destinationEdt: AutoCompleteTextView
     private lateinit var submitBtn: Button
 
-    private  var  LOCATION_PERMISSION_REQUEST_CODE = 123
+//    private lateinit var origin : String
+//    private lateinit var destination : String
 
-    private var userPolylines: MutableList<Polyline> = mutableListOf()
+    private lateinit var geocoder: Geocoder
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -64,120 +67,144 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         setContentView(binding.root)
 
         geocoder = Geocoder(this)
-        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
+
+
         val mapFragment = supportFragmentManager
             .findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
 
 
+        val autoCompleteLayout = findViewById<RelativeLayout>(R.id.autoCompleteLayout)
+        val btnStartStop = findViewById<Button>(R.id.btnStartStop)
         originEdt = findViewById(R.id.originEdt)
         destinationEdt = findViewById(R.id.destinationEdt)
 
+
         submitBtn = findViewById(R.id.submitBtn)
         submitBtn.setOnClickListener {
-            requestDirections()
+            autoCompleteLayout.visibility = View.GONE
+            val origin = originEdt.text.toString()
+            val destination = destinationEdt.text.toString()
+            requestDirections(origin, destination)
+            btnStartStop.visibility = View.VISIBLE
         }
 
-        locationHelper = LocationHelper(this) { location ->
-            // Update the map with the user's current location
-            onLocationChanged(location)
+        locationProvider = LocationProvider(this)
+
+        geocoder = Geocoder(this, Locale.getDefault())
+
+        locationProvider.getUserLocation()
+
+        // Set up the AutoCompleteTextView with the user's current location as the default value
+        locationProvider.liveLocation.observe(this, { location ->
+            // Update the origin EditText with the current location
+            originEdt.setText("${location.latitude}, ${location.longitude}")
+        })
+        // Request the user's current location
+        locationProvider.getUserLocation()
+
+        binding.btnStartStop.setOnClickListener {
+            if (binding.btnStartStop.text == getString(R.string.start_label)) {
+                startTracking()
+                binding.btnStartStop.setText(R.string.stop_label)
+            } else {
+                stopTracking()
+                binding.btnStartStop.setText(R.string.start_label)
+            }
         }
 
-        backbtn = findViewById(R.id.backArrow)
-        backbtn.setOnClickListener {
-            val intent = Intent(this@MapsActivity, MainActivity::class.java)
-            startActivity(intent)
-        }
+        presenter.onViewCreated()
+
+        setUpAutoCompleteTextViews()
     }
 
-    override fun onStart() {
-        super.onStart()
-        locationHelper.startLocationUpdates()
-    }
+    private fun setUpAutoCompleteTextViews() {
+        val ahmedabadAddresses = arrayOf(
+            "Ahmedabad, Gujarat, India", "Gandhinagar, Gujarat, India", "Vastrapur, Ahmedabad, Gujarat, India",
+            "Manek Chowk, Ahmedabad, Gujarat, India", "Ellis Bridge, Ahmedabad, Gujarat, India", "Iskcon temple, Ahmedabad", "Navrangpura , Ahmedabad",
+            "Kathwada , Nikol , Ahmedabad", "Bapunagar Approach ,  Ahmedabad", "Jadeshwar van , Ahmedabad",
+            "Vastral, Ahmedabad", "RTO Office , Vastral, Ahmedabad", "Vatva GIDC Phase 1, Ahmedabad",
+            "Multispan Control Instrument Pvt Ltd , Vatva , Ahmedabad", "Isanpur , Ahmedabad",
+            "Sarkhej Roza ,Ahmedabad", "LJ University , Ahmedabad",
+            "Naroda , Ahmedabad", "CTM, Ahmedabad","Narol BRTS,Ahmedabad","Paldi,Ahmedabad", "Nehrunagar Ahmedabad","Law Garden , Ahmedabad",
+            "Bopal , Ahmedabad", "Shela , Ahmedabad",
+            "Ghodasar , Ahmedabad","Vinzol , Ahmedabad","Hathijan, Ahmedabad","Lambha , Ahmedabad","Jashodanagar Char Rasta","CIPET:IPT,Ahmedabad","Amraiwadi ,Ahmedabad",
+            "Rabri Colony, Ahmedabad","Soni ni Chali, Ahmedabad","Rakhial Road, Ahmedabad","Thakkarnagar , Ahmedabad","Sabarmati Gandhi Ashram","Science City , Ahmedabad"
+        )
 
-    override fun onStop() {
-        super.onStop()
-        locationHelper.stopLocationUpdates()
+        val adapter = ArrayAdapter(this, android.R.layout.simple_dropdown_item_1line, ahmedabadAddresses.map { it.toLowerCase(Locale.getDefault()) })
+        originEdt.setAdapter(adapter)
+        destinationEdt.setAdapter(adapter)
     }
 
     override fun onMapReady(googleMap: GoogleMap) {
         map = googleMap
-
-        enableMyLocation()
-
-        // Zoom to the user's current location
-        locationHelper.startLocationUpdates()
-    }
-
-//    private fun onLocationChanged(location: Location) {
-//        // Zoom to the user's current location
-//        val latLng = LatLng(location.latitude, location.longitude)
-//        map.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 16f))
-//
-//        // Add a marker to the user's current location
-//        map.clear() // Clear existing markers
-//        map.addMarker(MarkerOptions().position(latLng).title("Your Location"))
-//    }
-
-
-    private fun onLocationChanged(location: Location) {
-        // Zoom to the user's current location
-        val latLng = LatLng(location.latitude, location.longitude)
-        map.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 16f))
-
-        // Draw/update the polyline from the starting point to the current location
-        val startPointLatLng = getLatLngFromAddress(originEdt.text.toString())
-        if (startPointLatLng != null) {
-            val startPoint = startPointLatLng
-
-            val polylineOptions = PolylineOptions()
-                .add(LatLng(startPoint.first,startPoint.second))
-                .add(latLng)  // Use the updated latLng directly here
-                .color(Color.RED)
-                .width(7f)
-
-            // Add the new polyline to the map
-            map.addPolyline(polylineOptions)
-
-            // Add the new polyline to the list for continuous tracking
-            userPolylines.add(map.addPolyline(polylineOptions))
-        }
-    }
-
-    private fun enableMyLocation() {
-        if (ActivityCompat.checkSelfPermission(
-                this,
-                Manifest.permission.ACCESS_FINE_LOCATION
-            ) == PackageManager.PERMISSION_GRANTED
-        ) {
-            map.isMyLocationEnabled = true
-        } else {
-            ActivityCompat.requestPermissions(
-                this,
-                arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
-                LOCATION_PERMISSION_REQUEST_CODE
-            )
-        }
-    }
-
-    private fun requestDirections() {
-        val client = OkHttpClient()
+        locationProvider.initializeMap(map)
 
         val origin = originEdt.text.toString()
         val destination = destinationEdt.text.toString()
+        requestDirections(origin, destination)
+
+        presenter.ui.observe(this) { ui ->
+            updateUi(ui)
+        }
+        presenter.onMapLoaded()
+        map.uiSettings.isZoomControlsEnabled = true
+    }
+
+    private fun startTracking() {
+        binding.container.txtPace.text = ""
+        binding.container.txtDistance.text = ""
+        binding.container.txtTime.base = SystemClock.elapsedRealtime()
+        binding.container.txtTime.start()
+//        map.clear()
+
+        presenter.startTracking()
+    }
+
+    private fun stopTracking() {
+        presenter.stopTracking()
+        binding.container.txtTime.stop()
+    }
+
+    @SuppressLint("MissingPermission")
+    private fun updateUi(ui: Ui) {
+        if (ui.currentLocation != null && ui.currentLocation != map.cameraPosition.target) {
+            map.isMyLocationEnabled = true
+            map.animateCamera(CameraUpdateFactory.newLatLngZoom(ui.currentLocation, 18f))
+        }
+        binding.container.txtDistance.text = ui.formattedDistance
+        binding.container.txtPace.text = ui.formattedPace
+        drawRoute(ui.userPath)
+    }
+
+    private fun drawRoute(locations: List<LatLng>) {
+        val polylineOptions = PolylineOptions()
+
+//    map.clear()
+        val points = polylineOptions.points
+        points.addAll(locations)
+
+        map.addPolyline(polylineOptions)
+    }
 
 
-        val startPointLatLng = getLatLngFromAddress(origin!!)
-        val endPointLatLng = getLatLngFromAddress(destination!!)
+    private fun requestDirections(origin: String, destination: String) {
+
+        val client = OkHttpClient()
+
+//        val origin = originEdt.text.toString()
+//        val destination = destinationEdt.text.toString()
+
+        val startPointLatLng = getLatLngFromAddress(origin)
+        val endPointLatLng = getLatLngFromAddress(destination)
 
         Log.d("--------", "requestDirections: ${startPointLatLng}  ${endPointLatLng}")
 
         if (startPointLatLng != null && endPointLatLng != null) {
-            // Split latitude and longitude values
             val (startPointLat, startPointLng) = startPointLatLng
             val (endPointLat, endPointLng) = endPointLatLng
 
-            // Create the URL with separately defined latitudes and longitudes
             val url =
                 "https://trueway-directions2.p.rapidapi.com/FindDrivingRoute?stops=$startPointLat,$startPointLng%3B$endPointLat,$endPointLng"
             val request = Request.Builder()
@@ -186,9 +213,10 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
                 .addHeader("X-RapidAPI-Key", "b75b1af2dbmshcf32852a614c58cp1280cajsne0e57708a417")
                 .addHeader("X-RapidAPI-Host", "trueway-directions2.p.rapidapi.com")
                 .build()
+
             client.newCall(request).enqueue(object : Callback {
                 override fun onFailure(call: Call, e: IOException) {
-                    Toast.makeText(this@MapsActivity, "getting error", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@MapsActivity, "Getting error", Toast.LENGTH_SHORT).show()
                 }
 
                 override fun onResponse(call: Call, response: Response) {
@@ -209,10 +237,12 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
                         runOnUiThread {
                             drawPolyline(points)
                             if (distance.isNotEmpty()) {
-//                                // Update the TextView with the distance
-//                                val distanceTxt = findViewById<TextView>(R.id.distanceTxt)
-//                                distanceTxt.text = "Distance: $distanceInKm km  Duration : ${duration}"
-//                                Toast.makeText(this@MapsActivity, "Distance: $distance", Toast.LENGTH_LONG).show()
+                                // Update the TextView with the distance
+                                val distanceTxt = findViewById<TextView>(R.id.totalDistance)
+//                                val durationTxt = findViewById<TextView>(R.id.duration)
+                                distanceTxt.text = "$distanceInKm km "
+//                                durationTxt.text = "${duration}"
+                                Toast.makeText(this@MapsActivity, "Distance: $distance", Toast.LENGTH_LONG).show()
                             }
 
                             if (distance.isNotEmpty()) {
@@ -224,7 +254,6 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             })
             Log.d("--------", "requestDirections: $url")
         }
-
     }
 
     private fun parseDirections(jsonData: String?): Triple<List<LatLng>, String, String> {
@@ -279,20 +308,6 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         return  return Triple(points, distance, duration)
     }
 
-//    fun getLatLngFromAddress(address: String): Pair<Double, Double>? {
-//        try {
-//            val addresses: List<Address> = geocoder.getFromLocationName(address, 1)!!
-//            if (addresses.isNotEmpty()) {
-//                val latitude = addresses[0].latitude
-//                val longitude = addresses[0].longitude
-//                return Pair(latitude, longitude)
-//            }
-//        } catch (e: IOException) {
-//            e.printStackTrace()
-//        }
-//        return null
-//    }
-
     fun getLatLngFromAddress(address: String): Pair<Double, Double>? {
         try {
             val addresses: List<Address> = geocoder.getFromLocationName(address, 1)!!
@@ -306,6 +321,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         }
         return null
     }
+
     private fun drawPolyline(points: List<LatLng>?) {
         if (points != null && points.isNotEmpty()) {
             val polylineOptions = PolylineOptions()
@@ -321,16 +337,18 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             }
             val bounds = builder.build()
 
-            addMarker(
-                points.first(),
-                "origin",
-                BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)
-            )
-            addMarker(
-                points.last(),
-                "destination",
-                BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)
-            )
+            val originAddress = originEdt.text.toString()
+            val destinationAddress = destinationEdt.text.toString()
+
+            val originLatLng = getLatLngFromAddress(originAddress!!)
+            val destinationLatLng = getLatLngFromAddress(destinationAddress!!)
+
+            if (originLatLng != null && destinationLatLng != null) {
+                addMarker(LatLng(originLatLng.first, originLatLng.second), originAddress, BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED))
+                addMarker(LatLng(destinationLatLng.first, destinationLatLng.second), destinationAddress, BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED))
+            } else {
+                Log.e("MapsActivity", "Error getting LatLng from address")
+            }
 
             val padding = 50
             val cameraUpdate = CameraUpdateFactory.newLatLngBounds(bounds, padding)
@@ -347,12 +365,9 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         }
     }
 
-    private fun addMarker(latLng: LatLng, title: String, icon: BitmapDescriptor) {
-        val markerOptions = MarkerOptions()
-            .position(latLng)
-            .title(title)
-            .icon(icon)
-
-        map.addMarker(markerOptions)
+    private fun addMarker(latLng: LatLng, title: String?, icon: BitmapDescriptor) {
+        map.addMarker(MarkerOptions().position(latLng).title(title).icon(icon))
     }
+
 }
+

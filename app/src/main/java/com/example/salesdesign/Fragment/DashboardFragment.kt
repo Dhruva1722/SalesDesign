@@ -63,7 +63,7 @@ class DashboardFragment : Fragment() {
         }
 
         mapsActivity.setOnClickListener {
-            val intent = Intent(requireContext(),MapsActivity::class.java)
+            val intent = Intent(requireContext(), MapsActivity::class.java)
             startActivity(intent)
         }
 

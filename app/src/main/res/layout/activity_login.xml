@@ -20,8 +20,8 @@
         android:layout_marginEnd="5dp">
 
         <ImageView
-            android:layout_width="160dp"
-            android:layout_height="160dp"
+            android:layout_width="220dp"
+            android:layout_height="190dp"
             android:src="@drawable/pana"
             android:layout_gravity="center"
             android:layout_marginTop="30dp"/>
@@ -33,7 +33,6 @@
             android:src="@drawable/logo1"/>
 
     </LinearLayout>
-
 
     <TextView
         android:id="@+id/loginTxt"
@@ -94,7 +93,6 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
-
         <TextView
             android:id="@+id/forgetPAsswordID"
             android:layout_width="wrap_content"
@@ -109,6 +107,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="LOGIN"
+            android:textColor="@color/white"
             android:textAllCaps="false"
             android:textSize="13sp"
             android:padding="10dp"

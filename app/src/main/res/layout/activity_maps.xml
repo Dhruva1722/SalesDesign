@@ -1,149 +1,98 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:map="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Map.MapsActivity"
+    android:orientation="vertical"
     android:background="#e3e8ec">
 
 
-        <RelativeLayout
-            android:id="@+id/toolBarLy"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
+    <fragment
+        android:id="@+id/map"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".MapsActivity" />
+
+    <include
+        android:id="@+id/container"
+        layout="@layout/layout_indicators"/>
+
+    <!-- Layout to hold AutoCompleteTextViews -->
+    <RelativeLayout
+        android:id="@+id/autoCompleteLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/rectangle_card3"
+        android:elevation="10dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
+        android:visibility="visible">
+
+        <ImageView
+            android:id="@+id/Btn"
+            android:layout_width="20dp"
+            android:layout_height="80dp"
             android:layout_marginStart="5dp"
-            android:layout_marginEnd="5dp"
+            android:layout_marginTop="20dp"
+            android:src="@drawable/startendpoints" />
+
+        <AutoCompleteTextView
+            android:id="@+id/originEdt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="48dp"
+            android:layout_marginStart="5dp"
             android:layout_marginTop="5dp"
-            android:background="#ffff"
-            android:elevation="10dp">
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="5dp"
+            android:layout_toRightOf="@id/Btn"
+            android:hint="From : City,State,Country" />
 
-                <ImageView
-                    android:id="@+id/backArrow"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:src="@drawable/baseline_arrow_back_24"
-                    android:layout_centerVertical="true"
-                    android:layout_marginStart="10dp"/>
-
-                <TextView
-                    android:id="@+id/text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Map"
-                    android:textSize="20sp"
-                    android:textColor="@color/black"
-                    android:textStyle="bold"
-                    android:layout_toRightOf="@id/backArrow"
-                    android:layout_centerVertical="true"
-                    android:layout_marginStart="10dp"/>
-
-                <ImageView
-                    android:id="@+id/notificationBtn"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:src="@drawable/baseline_notifications_24"
-                    android:layout_toLeftOf="@id/helpBtn"
-                    android:layout_centerVertical="true"
-                    android:layout_marginEnd="10dp"/>
-
-                <ImageView
-                    android:id="@+id/helpBtn"
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
-                    android:src="@drawable/baseline_help_24"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginEnd="10dp"/>
-
-        </RelativeLayout>
-
-
-        <fragment
-            android:id="@+id/map"
-            android:name="com.google.android.gms.maps.SupportMapFragment"
+        <AutoCompleteTextView
+            android:id="@+id/destinationEdt"
             android:layout_width="match_parent"
-            android:layout_height="400dp"
-            android:layout_below="@id/toolBarLy"
+            android:layout_height="wrap_content"
+            android:minHeight="48dp"
+            android:hint="To : City,State,Country"
             android:layout_marginStart="5dp"
-            android:layout_marginEnd="5dp"
-            android:layout_marginTop="10dp"/>
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="5dp"
+            android:layout_toRightOf="@id/Btn"
+            android:layout_below="@id/originEdt"/>
 
-
-        <LinearLayout
+        <Button
+            android:id="@+id/submitBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/map"
+            android:layout_marginTop="5dp"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="10dp">
-
-
-                <Button
-                    android:id="@+id/startTrack"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Start"
-                    android:textColor="@color/white"
-                    android:layout_marginEnd="10dp"/>
-
-                <Button
-                    android:id="@+id/endTrack"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Stop"
-                    android:textColor="@color/white"
-                    android:layout_marginStart="10dp"/>
-
-
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:gravity="center"
-            android:layout_marginStart="5dp"
-            android:layout_marginEnd="5dp"
-            android:layout_marginBottom="10dp"
+            android:layout_marginBottom="5dp"
             android:padding="10dp"
-            android:layout_alignParentBottom="true"
-            android:background="@drawable/rectangle_card"
-            android:backgroundTint="@color/white"
-            android:elevation="10dp">
+            android:backgroundTint="@color/black"
+            android:text="Get Direction"
+            android:textColor="#FFFFFF"
+            android:layout_below="@id/destinationEdt" />
+    </RelativeLayout>
 
+    <!-- Start/Stop Button -->
+    <Button
+        android:id="@+id/btnStartStop"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:visibility="gone"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="10dp"
+        android:textColor="@color/white"
+        android:text="@string/start_label"
+        android:backgroundTint="#595959" />
 
-                <EditText
-                    android:id="@+id/originEdt"
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:hint="Origin"
-                    android:textColor="@color/black"
-                    android:textColorHint="@color/black"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginEnd="10dp"/>
-
-                <EditText
-                    android:id="@+id/destinationEdt"
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:hint="Destination"
-                    android:textColor="@color/black"
-                    android:textColorHint="@color/black"
-                    android:layout_below="@id/originEdt"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginEnd="10dp"/>
-                <Button
-                    android:id="@+id/submitBtn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Submit"
-                    android:textColor="@color/white"
-                    android:backgroundTint="#232323"
-                    android:layout_below="@id/destinationEdt"/>
-
-        </LinearLayout>
-
-
-
+<!--    style="@style/Widget.AppCompat.Button.Borderless.Colored"-->
 
 </RelativeLayout>
