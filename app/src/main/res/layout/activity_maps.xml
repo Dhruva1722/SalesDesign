@@ -15,9 +15,91 @@
         android:layout_height="match_parent"
         tools:context=".MapsActivity" />
 
+
+
+    <RelativeLayout
+        android:id="@+id/toolBarLy"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/rectangle_card3"
+        android:elevation="10dp">
+
+        <ImageView
+            android:id="@+id/backArrow"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/baseline_arrow_back_24"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="10dp"/>
+
+        <TextView
+            android:id="@+id/text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Map"
+            android:textSize="20sp"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:layout_toRightOf="@id/backArrow"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="10dp"/>
+
+        <ImageView
+            android:id="@+id/notificationBtn"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/baseline_notifications_24"
+            android:layout_toLeftOf="@id/helpBtn"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="10dp"/>
+
+        <ImageView
+            android:id="@+id/helpBtn"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:src="@drawable/baseline_help_24"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="10dp"/>
+
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/indicatorArrowUp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/toolBarLy"
+        android:layout_above="@id/container"
+        android:background="@drawable/circle"
+        android:src="@drawable/baseline_keyboard_arrow_up_24"
+        android:layout_marginTop="10dp" />
+
+    <ImageView
+        android:id="@+id/indicatorArrowDown"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/circle"
+        android:layout_below="@id/toolBarLy"
+        android:visibility="gone"
+        android:src="@drawable/baseline_keyboard_arrow_down_24"
+        android:layout_marginTop="10dp" />
+
     <include
         android:id="@+id/container"
-        layout="@layout/layout_indicators"/>
+        layout="@layout/layout_indicators"
+        android:layout_below="@id/indicatorArrowDown"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:visibility="gone"
+        android:layout_centerHorizontal="true"/>
 
     <!-- Layout to hold AutoCompleteTextViews -->
     <RelativeLayout
@@ -65,6 +147,7 @@
             android:layout_toRightOf="@id/Btn"
             android:layout_below="@id/originEdt"/>
 
+
         <Button
             android:id="@+id/submitBtn"
             android:layout_width="wrap_content"
@@ -78,6 +161,7 @@
             android:textColor="#FFFFFF"
             android:layout_below="@id/destinationEdt" />
     </RelativeLayout>
+
 
     <!-- Start/Stop Button -->
     <Button

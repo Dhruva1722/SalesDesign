@@ -79,6 +79,33 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         originEdt = findViewById(R.id.originEdt)
         destinationEdt = findViewById(R.id.destinationEdt)
 
+        val upArrow = findViewById<ImageView>(R.id.indicatorArrowUp)
+        val downArrow = findViewById<ImageView>(R.id.indicatorArrowDown)
+        val container = findViewById<View>(R.id.container)
+
+        downArrow.setOnClickListener {
+            if (container.visibility == View.VISIBLE) {
+                container.visibility = View.GONE
+                downArrow.visibility = View.GONE
+                upArrow.visibility = View.VISIBLE
+            } else {
+                container.visibility = View.VISIBLE
+                downArrow.visibility = View.VISIBLE
+                upArrow.visibility = View.GONE
+            }
+        }
+
+        upArrow.setOnClickListener {
+            if (container.visibility == View.VISIBLE) {
+                container.visibility = View.GONE
+                downArrow.visibility = View.GONE
+                upArrow.visibility = View.VISIBLE
+            } else {
+                container.visibility = View.VISIBLE
+                downArrow.visibility = View.VISIBLE
+                upArrow.visibility = View.GONE
+            }
+        }
 
         submitBtn = findViewById(R.id.submitBtn)
         submitBtn.setOnClickListener {
@@ -93,7 +120,6 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
         geocoder = Geocoder(this, Locale.getDefault())
 
-        locationProvider.getUserLocation()
 
         // Set up the AutoCompleteTextView with the user's current location as the default value
         locationProvider.liveLocation.observe(this, { location ->
