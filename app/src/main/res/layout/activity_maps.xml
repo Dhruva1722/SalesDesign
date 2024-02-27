@@ -114,52 +114,137 @@
         android:layout_marginBottom="20dp"
         android:visibility="visible">
 
-        <ImageView
-            android:id="@+id/Btn"
-            android:layout_width="20dp"
-            android:layout_height="80dp"
-            android:layout_marginStart="5dp"
-            android:layout_marginTop="20dp"
-            android:src="@drawable/startendpoints" />
+
+        <LinearLayout
+            android:id="@+id/locationImg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="30dp">
+
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_gravity="center_horizontal"
+                android:src="@drawable/button"
+                map:tint="#1193E8" />
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_gravity="center_horizontal"
+                android:src="@drawable/startendpoints" />
+
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_gravity="center_horizontal"
+                android:src="@drawable/placeholder" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/fromTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="From :"
+            android:textColor="#1193E8"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@id/locationImg"/>
 
         <AutoCompleteTextView
             android:id="@+id/originEdt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:minHeight="48dp"
             android:layout_marginStart="5dp"
             android:layout_marginTop="5dp"
-            android:layout_marginEnd="10dp"
+            android:layout_marginEnd="5dp"
+            android:minHeight="48dp"
             android:layout_marginBottom="5dp"
-            android:layout_toRightOf="@id/Btn"
-            android:hint="From : City,State,Country" />
+            android:layout_toRightOf="@id/locationImg"
+            android:layout_below="@id/fromTxt"
+            android:hint="Ahmedabad,Gujarat,India" />
+
+        <TextView
+            android:id="@+id/toTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="To:"
+            android:textColor="#D13706"
+            android:layout_marginLeft="10dp"
+            android:layout_below="@id/originEdt"
+            android:layout_toRightOf="@id/locationImg"/>
 
         <AutoCompleteTextView
             android:id="@+id/destinationEdt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:hint="Ahmedabad,Gujarat,India"
             android:minHeight="48dp"
-            android:hint="To : City,State,Country"
-            android:layout_marginStart="5dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginBottom="5dp"
-            android:layout_toRightOf="@id/Btn"
-            android:layout_below="@id/originEdt"/>
-
+            android:layout_margin="5dp"
+            android:layout_toRightOf="@id/locationImg"
+            android:layout_below="@id/toTxt"/>
 
         <Button
             android:id="@+id/submitBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="5dp"
-            android:padding="10dp"
-            android:backgroundTint="@color/black"
             android:text="Get Direction"
-            android:textColor="#FFFFFF"
-            android:layout_below="@id/destinationEdt" />
+            android:textColor="@color/white"
+            android:layout_below="@id/destinationEdt"
+            android:layout_marginTop="5dp"
+            android:layout_centerHorizontal="true"/>
+
+<!--        <ImageView-->
+<!--            android:id="@+id/Btn"-->
+<!--            android:layout_width="20dp"-->
+<!--            android:layout_height="80dp"-->
+<!--            android:layout_marginStart="5dp"-->
+<!--            android:layout_marginTop="20dp"-->
+<!--            android:src="@drawable/startendpoints" />-->
+
+<!--        <AutoCompleteTextView-->
+<!--            android:id="@+id/originEdt"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:minHeight="48dp"-->
+<!--            android:layout_marginStart="5dp"-->
+<!--            android:layout_marginTop="5dp"-->
+<!--            android:layout_marginEnd="10dp"-->
+<!--            android:layout_marginBottom="5dp"-->
+<!--            android:layout_toRightOf="@id/Btn"-->
+<!--            android:hint="From : City,State,Country" />-->
+
+<!--        <AutoCompleteTextView-->
+<!--            android:id="@+id/destinationEdt"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:minHeight="48dp"-->
+<!--            android:hint="To : City,State,Country"-->
+<!--            android:layout_marginStart="5dp"-->
+<!--            android:layout_marginTop="5dp"-->
+<!--            android:layout_marginEnd="10dp"-->
+<!--            android:layout_marginBottom="5dp"-->
+<!--            android:layout_toRightOf="@id/Btn"-->
+<!--            android:layout_below="@id/originEdt"/>-->
+
+
+<!--        <Button-->
+<!--            android:id="@+id/submitBtn"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="5dp"-->
+<!--            android:layout_centerHorizontal="true"-->
+<!--            android:layout_marginBottom="5dp"-->
+<!--            android:padding="10dp"-->
+<!--            android:backgroundTint="@color/black"-->
+<!--            android:text="Get Direction"-->
+<!--            android:textColor="#FFFFFF"-->
+<!--            android:layout_below="@id/destinationEdt" />-->
     </RelativeLayout>
 
 

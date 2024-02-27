@@ -35,11 +35,13 @@
         <activity
             android:name=".SplashScreen"
             android:exported="true">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
         <activity
             android:name=".Activity.ProfileActivity"
@@ -75,21 +77,27 @@
             android:name=".Map.MapsActivity"
             android:exported="false"
             android:label="@string/title_activity_maps" />
+
         <activity
             android:name=".Activity.CustomerActivity"
             android:exported="false" />
+
         <activity
             android:name=".Activity.VisitsActivity"
             android:exported="false" />
+
         <activity
             android:name=".Activity.KMSActivity"
             android:exported="false" />
+
         <activity
             android:name=".Activity.ExpenseActivity"
             android:exported="false" />
+
         <activity
             android:name=".Activity.LoginActivity"
             android:exported="true" />
+
         <activity
             android:name=".MainActivity"
             android:exported="true" />
@@ -97,6 +105,7 @@
         <service
             android:name=".Map.LocationForegroundService"
             android:exported="false" />
+
     </application>
 
 </manifest>

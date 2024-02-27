@@ -152,7 +152,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             "Vastral, Ahmedabad", "RTO Office , Vastral, Ahmedabad", "Vatva GIDC Phase 1, Ahmedabad",
             "Multispan Control Instrument Pvt Ltd , Vatva , Ahmedabad", "Isanpur , Ahmedabad",
             "Sarkhej Roza ,Ahmedabad", "LJ University , Ahmedabad",
-            "Naroda , Ahmedabad", "CTM, Ahmedabad","Narol BRTS,Ahmedabad","Paldi,Ahmedabad", "Nehrunagar Ahmedabad","Law Garden , Ahmedabad",
+            "Naroda , Ahmedabad,India", "CTM, Ahmedabad","Narol BRTS,Ahmedabad","Paldi,Ahmedabad", "Nehrunagar Ahmedabad","Law Garden , Ahmedabad",
             "Bopal , Ahmedabad", "Shela , Ahmedabad",
             "Ghodasar , Ahmedabad","Vinzol , Ahmedabad","Hathijan, Ahmedabad","Lambha , Ahmedabad","Jashodanagar Char Rasta","CIPET:IPT,Ahmedabad","Amraiwadi ,Ahmedabad",
             "Rabri Colony, Ahmedabad","Soni ni Chali, Ahmedabad","Rakhial Road, Ahmedabad","Thakkarnagar , Ahmedabad","Sabarmati Gandhi Ashram","Science City , Ahmedabad"
@@ -213,7 +213,6 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
         map.addPolyline(polylineOptions)
     }
-
 
     private fun requestDirections(origin: String, destination: String) {
 
