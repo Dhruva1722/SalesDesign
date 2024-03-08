@@ -57,133 +57,105 @@
 
     </RelativeLayout>
 
-
-    <RelativeLayout
-        android:id="@+id/card1"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_below="@id/toolBarLy"
-        android:layout_marginStart="10dp"
+    <TextView
+        android:id="@+id/targetTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Today's Task"
+        android:textStyle="bold"
+        android:textSize="20sp"
         android:layout_marginTop="10dp"
-        android:layout_marginEnd="10dp"
+        android:layout_marginStart="10dp"
         android:layout_marginBottom="10dp"
-        android:background="@drawable/rectangle_card3">
+        android:layout_below="@id/toolBarLy"
+        android:textColor="#404142"/>
+
+    <TableLayout
+        android:id="@+id/tab1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/targetTxt">
+
+    <TableRow android:background="#000000" android:padding="10dp">
 
         <TextView
-            android:id="@+id/targetTxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Instrument Name"
+            android:textStyle="bold"
+            android:textColor="@color/white"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Stock"
+            android:textStyle="bold"
+            android:textColor="@color/white"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:text="Target"
             android:textStyle="bold"
+            android:textColor="@color/white"/>
+
+
+
+    </TableRow>
+
+    </TableLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/analysis_data_table"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tab1"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"/>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/analysis_data_table"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Remaining Task"
+            android:textStyle="bold"
             android:textSize="20sp"
             android:layout_marginTop="10dp"
             android:layout_marginStart="10dp"
+            android:layout_marginBottom="10dp"
             android:textColor="#404142"/>
 
-
-
-    </RelativeLayout>
-
-
-    <RelativeLayout
-        android:id="@+id/card2"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_below="@id/card1"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="10dp"
-        android:background="@drawable/rectangle_card2">
-
-
-        <TextView
-            android:id="@+id/stockTxt"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Remaining Stocks"
-            android:textStyle="bold"
-            android:textSize="20sp"
-            android:layout_marginTop="10dp"
-            android:layout_marginStart="10dp"
-            android:textColor="#2E2F30"/>
-
-        <TextView
-            android:id="@+id/instrumentTypeTxt"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Type :"
-            android:textStyle="bold"
-            android:textSize="20sp"
-            android:layout_below="@id/stockTxt"
-            android:layout_marginTop="10dp"
-            android:layout_marginStart="10dp"
-            android:textColor="#808183"/>
-
-        <TextView
-            android:id="@+id/instrumentTxt"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="MFM-14"
-            android:textStyle="bold"
-            android:textSize="20sp"
-            android:layout_below="@id/stockTxt"
-            android:layout_toRightOf="@id/instrumentTypeTxt"
-            android:layout_marginTop="10dp"
-            android:layout_marginStart="10dp"
-            android:textColor="#808183"/>
-
-        <TextView
-            android:id="@+id/stockTypeTxt"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Stock :"
-            android:textStyle="bold"
-            android:textSize="20sp"
-            android:layout_below="@id/instrumentTypeTxt"
-            android:layout_marginTop="10dp"
-            android:layout_marginStart="10dp"
-            android:textColor="#808183"/>
-
-        <TextView
-            android:id="@+id/numberOfStock"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="23"
-            android:textStyle="bold"
-            android:textSize="20sp"
-            android:layout_below="@id/instrumentTypeTxt"
-            android:layout_toRightOf="@id/stockTypeTxt"
-            android:layout_marginTop="10dp"
-            android:layout_marginStart="10dp"
-            android:textColor="#808183"/>
-
-
-    </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:background="@drawable/rectangle_card">
 
 
 
-    <RelativeLayout
-        android:id="@+id/card3"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_below="@id/card2"
-        android:layout_margin="10dp"
-        android:background="@drawable/rectangle_card1">
 
 
-        <TextView
-            android:id="@+id/reasonTxt"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Reason for Remaining Stocks"
-            android:textStyle="bold"
-            android:textSize="20sp"
-            android:layout_marginTop="10dp"
-            android:layout_marginStart="10dp"
-            android:textColor="#2E2F30"/>
 
-    </RelativeLayout>
+
+        </RelativeLayout>
+
+
+
+
+
+    </LinearLayout>
 
 
 

@@ -1,6 +1,8 @@
 package com.example.salesdesign.Retrofit
 
 import com.example.salesdesign.Activity.AttendanceData
+import com.example.salesdesign.Activity.ComplaintRequest
+import com.example.salesdesign.Activity.Employee
 import com.example.salesdesign.Activity.LeaveRequest
 import com.example.salesdesign.Activity.LeaveResponse
 import com.example.salesdesign.Activity.LoginResponse
@@ -8,8 +10,6 @@ import com.example.salesdesign.Activity.StockResponse
 import com.example.salesdesign.Activity.TripInfo
 import com.example.salesdesign.Fragment.Customer
 import com.example.salesdesign.Fragment.Event
-import com.example.salesdesign.Fragment.LocationInformation
-import com.example.salesdesign.Fragment.LocationResponse
 import com.example.salesdesign.Fragment.MenuData
 import com.example.salesdesign.Fragment.PurchaseTodayFood
 import com.example.salesdesign.Fragment.PurchaseTomorrowFood
@@ -18,14 +18,12 @@ import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import okhttp3.ResponseBody
 import retrofit2.Call
-import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.Multipart
 import retrofit2.http.POST
 import retrofit2.http.Part
 import retrofit2.http.Path
-import retrofit2.http.Query
 
 interface ApiService  {
 
@@ -64,8 +62,11 @@ interface ApiService  {
         @Body leaveRequest: LeaveRequest
     ): Call<ResponseBody>
 
+    @POST("/complaint")
+    fun submitComplaint(@Body data: ComplaintRequest): Call<Any>
 
-  // get data
+
+    // get data
     @GET("/customer")
     fun getCustomers(): Call<List<Customer>>
 
@@ -83,5 +84,7 @@ interface ApiService  {
     @GET("/location/{Id}")
     fun getTripData(@Path("Id") userId: String): Call<TripInfo>
 
+    @GET("/empregister")
+    fun getManagers(): List<Employee>
 
 }

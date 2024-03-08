@@ -1,6 +1,7 @@
 package com.example.salesdesign.Map
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.graphics.Color
 import android.location.Address
 import android.location.Geocoder
@@ -17,6 +18,7 @@ import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import android.widget.TextView
 import android.widget.Toast
+import com.example.salesdesign.MainActivity
 import com.example.salesdesign.R
 import com.example.salesdesign.databinding.ActivityMapsBinding
 
@@ -46,6 +48,8 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
     private lateinit var map: GoogleMap
     private lateinit var locationProvider: LocationProvider
+
+    private lateinit var backbtn : ImageView
 
     private lateinit var binding: ActivityMapsBinding
 
@@ -142,6 +146,13 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         presenter.onViewCreated()
 
         setUpAutoCompleteTextViews()
+
+
+        backbtn = findViewById(R.id.backArrow)
+        backbtn.setOnClickListener {
+            val intent = Intent(this@MapsActivity, MainActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     private fun setUpAutoCompleteTextViews() {

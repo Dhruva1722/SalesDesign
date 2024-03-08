@@ -31,8 +31,6 @@ class ReadyStockActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_ready_stock)
 
-
-
         backbtn = findViewById(R.id.backArrow)
         backbtn.setOnClickListener {
             val intent = Intent(this@ReadyStockActivity, MainActivity::class.java)
@@ -76,11 +74,7 @@ class ReadyStockActivity : AppCompatActivity() {
         })
     }
 
-
-    }
-
-
-
+}
 
 data class StockResponse(
     val Emp_ID: String,

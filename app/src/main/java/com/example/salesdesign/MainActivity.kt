@@ -8,9 +8,9 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.ImageView
 import android.widget.PopupMenu
-import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import com.example.salesdesign.Activity.ComplaintActivity
+import com.example.salesdesign.Activity.HelpActivity
 import com.example.salesdesign.Activity.LoginActivity
 import com.example.salesdesign.Fragment.AttendanceFragment
 import com.example.salesdesign.Fragment.CanteenFragment
@@ -90,13 +90,11 @@ class MainActivity : AppCompatActivity() , BottomNavigationView.OnNavigationItem
                     startActivity(intent)
                     true
                 }
-
                 R.id.action_complain -> {
                     val intent = Intent(this, ComplaintActivity::class.java)
                     startActivity(intent)
                     true
                 }
-
                 else -> false
             }
         }

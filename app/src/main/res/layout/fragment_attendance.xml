@@ -3,14 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#e3e8ec"
     tools:context=".Fragment.AttendanceFragment">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:background="#e3e8ec"
-        android:gravity="center_horizontal">
+
 
     <RelativeLayout
         android:layout_width="wrap_content"
@@ -37,11 +33,10 @@
         android:layout_width="140dp"
         android:layout_height="40dp"
         android:src="@drawable/inoffice"
-        android:visibility="gone"
         android:layout_above="@id/Username"
+        android:layout_below="@id/onsiteIcon"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
-        android:layout_marginStart="20dp"
         android:layout_marginBottom="10dp"/>
     <TextView
         android:id="@+id/Username"
@@ -159,6 +154,5 @@
 
     </RelativeLayout>
 
-    </LinearLayout>
 
 </FrameLayout>

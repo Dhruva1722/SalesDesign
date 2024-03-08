@@ -50,65 +50,65 @@ class AttendanceActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_attendance)
 
-
-        sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
-        userId = sharedPreferences.getString("User", null) ?: ""
-        isPunchedIn = sharedPreferences.getBoolean("isPunchedIn", false)
-
-        val lastAttendanceDate = sharedPreferences.getString(LAST_ATTENDANCE_DATE_KEY, "")
-
-        dateTimeTextView = findViewById(R.id.dateTime)
-        daymonthTextView = findViewById(R.id.dayMonth)
-        userStatusTime = findViewById(R.id.userTimeOfAttendence)
-        presentBtn = findViewById(R.id.presentBtn)
-        absentBtn = findViewById(R.id.absentBtn)
-        username = findViewById(R.id.Username)
-
-
-
-        val userEmail = sharedPreferences.getString("userEmail", "")
-        val parts = userEmail?.split("@")
-        if (parts?.size == 2) {
-            val name = parts[0]
-            username.text = "Hello, $name!!"
-        }
-
-        onsiteIcon = findViewById(R.id.onsiteIcon)
-        inofficeIcon = findViewById(R.id.inofficeIcon)
-
-        val currentDateTime = SimpleDateFormat("hh:mm a", Locale.getDefault()).format(Date())
-        dateTimeTextView.text = currentDateTime
-
-
-        val currentDayMonth = SimpleDateFormat("EEEE d,MMM", Locale.getDefault()).format(Date())
-        daymonthTextView.text = currentDayMonth
-
-        val savedStatus = sharedPreferences.getString(ATTENDANCE_STATUS_KEY, "")
-        if (savedStatus == "On-Site") {
-            updateUI(savedStatus)
-        } else {
-            updateUI("In-Office")
-            updateUI(savedStatus ?: "")
-        }
-
-        isDateChanged = hasDateChanged(lastAttendanceDate)
-
-        if (isPunchedIn) {
-            if (isDateChanged) {
-                presentBtn.isEnabled = true
-                absentBtn.isEnabled = true
-            } else {
-                presentBtn.isEnabled = false
-                absentBtn.isEnabled = false
-            }
-        }
-
-        presentBtn.setOnClickListener {
-            punchIn()
-        }
-        absentBtn.setOnClickListener {
-            punchOut()
-        }
+//
+//        sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+//        userId = sharedPreferences.getString("User", null) ?: ""
+//        isPunchedIn = sharedPreferences.getBoolean("isPunchedIn", false)
+//
+//        val lastAttendanceDate = sharedPreferences.getString(LAST_ATTENDANCE_DATE_KEY, "")
+//
+//        dateTimeTextView = findViewById(R.id.dateTime)
+//        daymonthTextView = findViewById(R.id.dayMonth)
+//        userStatusTime = findViewById(R.id.userTimeOfAttendence)
+//        presentBtn = findViewById(R.id.presentBtn)
+//        absentBtn = findViewById(R.id.absentBtn)
+//        username = findViewById(R.id.Username)
+//
+//
+//
+//        val userEmail = sharedPreferences.getString("userEmail", "")
+//        val parts = userEmail?.split("@")
+//        if (parts?.size == 2) {
+//            val name = parts[0]
+//            username.text = "Hello, $name!!"
+//        }
+//
+//        onsiteIcon = findViewById(R.id.onsiteIcon)
+//        inofficeIcon = findViewById(R.id.inofficeIcon)
+//
+//        val currentDateTime = SimpleDateFormat("hh:mm a", Locale.getDefault()).format(Date())
+//        dateTimeTextView.text = currentDateTime
+//
+//
+//        val currentDayMonth = SimpleDateFormat("EEEE d,MMM", Locale.getDefault()).format(Date())
+//        daymonthTextView.text = currentDayMonth
+//
+//        val savedStatus = sharedPreferences.getString(ATTENDANCE_STATUS_KEY, "")
+//        if (savedStatus == "On-Site") {
+//            updateUI(savedStatus)
+//        } else {
+//            updateUI("In-Office")
+//            updateUI(savedStatus ?: "")
+//        }
+//
+//        isDateChanged = hasDateChanged(lastAttendanceDate)
+//
+//        if (isPunchedIn) {
+//            if (isDateChanged) {
+//                presentBtn.isEnabled = true
+//                absentBtn.isEnabled = true
+//            } else {
+//                presentBtn.isEnabled = false
+//                absentBtn.isEnabled = false
+//            }
+//        }
+//
+//        presentBtn.setOnClickListener {
+//            punchIn()
+//        }
+//        absentBtn.setOnClickListener {
+//            punchOut()
+//        }
     }
 
     private fun hasDateChanged(lastAttendanceDate: String?): Boolean {

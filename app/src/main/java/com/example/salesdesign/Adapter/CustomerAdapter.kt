@@ -9,8 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.salesdesign.Fragment.Customer
 import com.example.salesdesign.R
 
-class CustomerAdapter (private var customerList: List<Customer>) :
-    RecyclerView.Adapter<CustomerAdapter.CustomerViewHolder>() {
+class CustomerAdapter (private var customerList: List<Customer>)  : RecyclerView.Adapter<CustomerAdapter.CustomerViewHolder>() {
 
     private var originalCustomerList: List<Customer> = customerList.toList()
 

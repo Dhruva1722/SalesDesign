@@ -17,17 +17,22 @@
         android:orientation="vertical"
         android:padding="10dp">
 
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/baseline_bookmark_24"
+            android:layout_gravity="right"/>
+
         <TextView
             android:id="@+id/viewName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="-20dp"
             android:layout_marginLeft="15dp"
             android:layout_marginBottom="5dp"
             android:text="Nick Jhons"
             android:textColor="@color/black"
             android:textSize="17sp"/>
-
 
         <TextView
             android:id="@+id/viewPhone"
